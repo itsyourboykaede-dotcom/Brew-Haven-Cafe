@@ -122,17 +122,56 @@
 </div>
 
 <script>
-    // Get customer info from localStorage
+    // Get core customer info from localStorage
     let cart = JSON.parse(localStorage.getItem("cart")) || [];
     let name = localStorage.getItem("customerName") || "N/A";
     let contact = localStorage.getItem("customerContact") || "N/A";
     let address = localStorage.getItem("customerAddress") || "N/A";
     let payment = localStorage.getItem("paymentMethod") || "N/A";
+    
+    // 1. GET ALL specific payment details
+    let gcashAccount = localStorage.getItem("gcashAccount");
+    let gcashNumber = localStorage.getItem("gcashNumber");
+    let mayaAccount = localStorage.getItem("mayaAccount");
+    let mayaNumber = localStorage.getItem("mayaNumber");
+    
+    // FIX: Retrieve Credit/Debit Card Details
+    let ccNumber = localStorage.getItem("ccNumber");
+    let ccExpiry = localStorage.getItem("ccExpiry");
+    let ccCVV = localStorage.getItem("ccCVV");
+    let ccName = localStorage.getItem("ccName");
 
+    // Display basic customer info
     document.getElementById("customerName").textContent = "Name: " + name;
     document.getElementById("customerContact").textContent = "Contact: " + contact;
     document.getElementById("customerAddress").textContent = "Address: " + address;
-    document.getElementById("paymentMethod").textContent = "Payment Method: " + payment.charAt(0).toUpperCase() + payment.slice(1);
+    
+    // Display main payment method
+    document.getElementById("paymentMethod").textContent = "Payment Method: " + payment;
+    
+    // Ensure this <div> exists in your HTML (it was added in the previous fix)
+    let paymentDetailsDiv = document.getElementById("paymentDetails");
+    let detailsHTML = "";
+
+    // 2. CONDITIONAL DISPLAY LOGIC (Includes Credit Card)
+    if (payment === 'GCash' && gcashAccount && gcashNumber) {
+        detailsHTML += `<p>Account Name: <strong>${gcashAccount}</strong></p>`;
+        detailsHTML += `<p>Mobile Number: <strong>${gcashNumber}</strong></p>`;
+    } else if (payment === 'Maya' && mayaAccount && mayaNumber) {
+        detailsHTML += `<p>Account Name: <strong>${mayaAccount}</strong></p>`;
+        detailsHTML += `<p>Mobile Number: <strong>${mayaNumber}</strong></p>`;
+    } else if (payment === 'Credit/Debit Card' && ccNumber && ccExpiry && ccName) {
+        // Mask the card number for display
+        const maskedCC = "•••• " + ccNumber.slice(-4);
+        
+        detailsHTML += `<p>Card Name: <strong>${ccName}</strong></p>`;
+        detailsHTML += `<p>Card Number: <strong>${maskedCC}</strong></p>`;
+        detailsHTML += `<p>Expiry: <strong>${ccExpiry}</strong></p>`;
+    }
+    
+    // Insert the specific details into the dedicated div
+    paymentDetailsDiv.innerHTML = detailsHTML;
+
 
     // Load cart items
     let tbody = document.querySelector("#orderTable tbody");
@@ -144,8 +183,9 @@
         let priceCell = document.createElement("td");
 
         nameCell.textContent = item.name;
-        priceCell.textContent = item.price;
-
+        // Format price to two decimal places
+        priceCell.textContent = "₱" + item.price.toFixed(2); 
+        
         row.appendChild(nameCell);
         row.appendChild(priceCell);
         tbody.appendChild(row);
@@ -153,7 +193,8 @@
         total += item.price;
     });
 
-    document.getElementById("totalAmount").textContent = total;
+    // Format total price
+    document.getElementById("totalAmount").textContent = total.toFixed(2);
 
     // Functions
     function printReceipt() {
@@ -161,6 +202,8 @@
     }
 
     function goHome() {
+        // Clear all local storage data when the user goes home after the order
+        localStorage.clear(); 
         window.location = "index.html";
     }
 </script>

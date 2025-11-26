@@ -5,68 +5,253 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Checkout</title>
 
-<link rel="stylesheet" href="styles.css">
-<script defer src="script.js"></script>
-
 <style>
-    .card {
-        background: #fff;
-        padding: 20px;
-        width: 90%;
-        max-width: 800px;
-        margin: 20px auto;
-        border-radius: 10px;
-        box-shadow: 0 3px 8px rgba(0,0,0,0.15);
-    }
+/* --- GENERAL CARD & LAYOUT STYLES --- */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    color: #333;
+    margin: 0;
+    padding: 0;
+}
 
-    .total-row {
-        display: flex;
-        justify-content: space-between;
-        margin-top: 15px;
-        font-size: 20px;
-        font-weight: bold;
-    }
+header {
+    background-color: #1e3932; /* Dark Green Header */
+    color: white;
+    padding: 15px 5%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
 
-    .delivery-box {
-        width: 90%;
-        max-width: 800px;
-        margin: 10px auto 30px;
-        display: flex;
-        flex-direction: column;
-        gap: 12px;
-    }
+.logo {
+    margin: 0;
+    font-size: 24px;
+}
 
-    .delivery-box input, .delivery-box select {
-        padding: 12px;
-        border-radius: 6px;
-        border: 1px solid #ccc;
-        font-size: 16px;
-    }
+.hamburger-menu {
+    display: none; /* Hide on larger screens */
+    background: none;
+    border: none;
+    color: white;
+    font-size: 24px;
+    cursor: pointer;
+}
 
-    .btn-box {
-        width: 90%;
-        max-width: 800px;
-        margin: 0 auto 60px;
-        display: flex;
-        gap: 10px;
-    }
+.nav-links a {
+    color: white;
+    text-decoration: none;
+    margin-left: 20px;
+    font-size: 16px;
+}
+
+.section-title {
+    width: 90%;
+    max-width: 800px;
+    margin: 30px auto 10px;
+    font-size: 22px;
+    color: #1e3932;
+}
+
+.card {
+    background: #fff;
+    padding: 20px;
+    width: 90%;
+    max-width: 800px;
+    margin: 20px auto;
+    border-radius: 10px;
+    box-shadow: 0 3px 8px rgba(0,0,0,0.15);
+}
+
+.total-row {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 15px;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.delivery-box {
+    width: 90%;
+    max-width: 800px;
+    margin: 10px auto 30px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.delivery-box input, .delivery-box select {
+    padding: 12px;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+    font-size: 16px;
+}
+
+.btn-box {
+    width: 90%;
+    max-width: 800px;
+    margin: 0 auto 60px;
+    display: flex;
+    gap: 10px;
+}
+
+.btn {
+    padding: 12px 20px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: bold;
+    flex: 1;
+    transition: background-color 0.2s;
+}
+
+/* FIX: Ensure Continue Shopping and Clear Cart buttons are green */
+.btn:nth-child(1) { /* Continue Shopping Button */
+    background-color: #1e3932; /* A medium green color */
+    color: white;
+}
+
+.btn:nth-child(3) { /* Clear Cart Button */
+    background-color: #1e3932; /* A medium green color */
+    color: white;
+}
+
+.btn:nth-child(1):hover, .btn:nth-child(3):hover {
+    background-color: #4a7468; /* Slightly darker on hover */
+}
+
+.btn:nth-child(2) { /* Place Order button (Main button) */
+    background-color: #1e3932; /* Dark Green */
+    color: white;
+}
+
+.btn:nth-child(2):hover {
+    background-color: #3b6056;
+}
+
+/* --- PAYMENT RADIO BUTTONS STYLES (App Look) --- */
+.payment-options {
+    padding: 0;
+}
+
+.payment-item-container {
+    border-bottom: 1px solid #eee;
+    padding: 10px 0;
+    transition: border 0.2s ease-in-out, background-color 0.2s; 
+    margin-bottom: 0;
+}
+
+.payment-item-container:last-child {
+    border-bottom: none;
+}
+
+/* Style for the SELECTED payment card (App Look) */
+.payment-item-container.selected {
+    border-left: 5px solid #FE2C55; /* Pink/Red indicator for selected row */
+    padding-left: 5px; 
+    background-color: #fff8f8; 
+    border-bottom: 1px solid #fee; 
+}
+
+
+.payment-option {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    padding: 5px 0;
+}
+
+.payment-option label {
+    flex-grow: 1;
+    margin-left: 10px;
+    font-size: 17px;
+    cursor: pointer;
+}
+
+/* Hide the default radio button */
+.payment-option input[type="radio"] {
+    appearance: none;
+    -webkit-appearance: none;
+    width: 20px;
+    height: 20px;
+    border: 2px solid #ccc; 
+    border-radius: 50%;
+    margin: 0;
+    outline: none;
+    cursor: pointer;
+    display: grid;
+    place-content: center;
+}
+
+/* Style the checked state */
+.payment-option input[type="radio"]:checked {
+    border-color: #FE2C55; 
+}
+
+.payment-option input[type="radio"]:checked::before {
+    content: "";
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background-color: #FE2C55; 
+}
+
+/* Adjust size for the logo images */
+.payment-icon img {
+    width: 28px;
+    height: 28px;
+    object-fit: contain;
+    vertical-align: middle;
+    margin-right: 5px;
+}
+
+/* --- STYLES for Conditional Input Fields and Animation --- */
+.payment-details {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease-in-out, padding 0.3s ease-in-out; 
+    display: flex; 
+    flex-direction: column;
+    gap: 8px; 
+    margin-top: 5px; 
+    padding: 0 10px;
+    background-color: #f9f9f9; 
+    border-radius: 8px;
+    margin-left: -5px; 
+    width: calc(100% + 10px);
+}
+
+.payment-details.open {
+    max-height: 300px; 
+    padding: 10px;
+    margin-bottom: 10px;
+}
+
+.payment-details input {
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 15px;
+    width: 100%;
+    background-color: #fff;
+}
 </style>
 
 </head>
 <body>
 
 <header>
-  <h1 class="logo">Brew Haven</h1>
-<button class="hamburger-menu" aria-label="Toggle Navigation">☰</button>
-<nav class="nav-links">
-    <a href="index.html">Home</a>
-    <a href="products.html">Menu</a>
-    <a href="checkout.html">Checkout</a>
-</nav>
+    <h1 class="logo">Brew Haven</h1>
+    <button class="hamburger-menu" aria-label="Toggle Navigation">☰</button>
+    <nav class="nav-links">
+        <a href="index.html">Home</a>
+        <a href="products.html">Menu</a>
+        <a href="checkout.html">Checkout</a>
+    </nav>
 </header>
 
 <h2 class="section-title">Your Order</h2>
-
 
 <div class="card">
     <div id="cart-list"></div>
@@ -79,22 +264,70 @@
 
 <h2 class="section-title">Delivery Details</h2>
 
-
 <div class="delivery-box">
-    <input type="text" id="fullname" placeholder="Full name">
-    <input type="text" id="contact" placeholder="Contact number">
-    <input type="text" id="address" placeholder="Delivery address">
-    
-   
-    <select id="paymentMethod">
-        <option value="" disabled selected>Select Payment Method</option>
-        <option value="gcash">GCash</option>
-        <option value="maya">Maya</option>
-        <option value="credit_card">Credit Card</option>
-        <option value="cod">Cash on Delivery</option>
-    </select>
+    <input type="text" id="fullname" placeholder="Full name" required>
+    <input type="text" id="contact" placeholder="Contact number" required>
+    <input type="text" id="address" placeholder="Delivery address" required>
 </div>
 
+<h2 class="section-title">Payment Method</h2>
+
+<div class="card payment-options">
+
+    <div class="payment-item-container" id="cod-container">
+        <label class="payment-option" for="radio-cod">
+            <input type="radio" name="paymentMethod" value="Cash on Delivery" id="radio-cod" required>
+            <span class="payment-icon icon-cod">📦</span>
+            Cash on Delivery (COD)
+        </label>
+    </div>
+
+    <div class="payment-item-container" id="gcash-container">
+        <label class="payment-option" for="radio-gcash">
+            <input type="radio" name="paymentMethod" value="GCash" id="radio-gcash" required>
+            <span class="payment-icon">
+                <img src="gcash.png" alt="GCash Logo">
+            </span>
+            GCash
+        </label>
+        <div id="gcash-details" class="payment-details">
+            <input type="text" id="gcash-name" placeholder="GCash Account Name">
+            <input type="text" id="gcash-number" placeholder="GCash Mobile Number">
+        </div>
+    </div>
+
+    <div class="payment-item-container" id="maya-container">
+        <label class="payment-option" for="radio-maya">
+            <input type="radio" name="paymentMethod" value="Maya" id="radio-maya" required>
+            <span class="payment-icon">
+                <img src="maya.png" alt="Maya Logo">
+            </span>
+            Maya
+        </label>
+        <div id="maya-details" class="payment-details">
+            <input type="text" id="maya-name" placeholder="Maya Account Name">
+            <input type="text" id="maya-number" placeholder="Maya Mobile Number">
+        </div>
+    </div>
+
+    <div class="payment-item-container" id="cc-container">
+        <label class="payment-option" for="radio-cc">
+            <input type="radio" name="paymentMethod" value="Credit/Debit Card" id="radio-cc" required>
+            <span class="payment-icon icon-cc">💳</span>
+            Credit/Debit Card
+        </label>
+        <div id="cc-details" class="payment-details">
+            <p style="margin: -5px 0 5px; font-size: 14px; color: #555;">**Add New Card**</p> 
+            <input type="text" id="cc-number" placeholder="Card Number (4444 xxxx xxxx 4444)">
+            <div style="display: flex; gap: 10px;">
+                <input type="text" id="cc-expiry" placeholder="MM/YY" style="flex: 2;">
+                <input type="text" id="cc-cvv" placeholder="CVV" style="flex: 1;">
+            </div>
+            <input type="text" id="cc-name" placeholder="Name on Card">
+        </div>
+    </div>
+    
+</div>
 
 <div class="btn-box">
     <button class="btn" onclick="window.location='products.html'">Continue Shopping</button>
@@ -115,21 +348,69 @@ function loadCart() {
         total += item.price;
     });
 
-    document.getElementById("total").textContent = total;
+    document.getElementById("total").textContent = `₱${total}`; 
 }
 
 function clearCart() {
     localStorage.removeItem("cart");
+    localStorage.removeItem("gcashAccount");
+    localStorage.removeItem("gcashNumber");
+    localStorage.removeItem("mayaAccount");
+    localStorage.removeItem("mayaNumber");
+    localStorage.removeItem("ccNumber");
+    localStorage.removeItem("ccExpiry");
+    localStorage.removeItem("ccCVV");
+    localStorage.removeItem("ccName"); 
     cart = [];
     loadCart();
     alert("Cart cleared!");
 }
 
+function handlePaymentChange() {
+    const allContainers = document.querySelectorAll('.payment-item-container');
+    const gcashDetails = document.getElementById('gcash-details');
+    const mayaDetails = document.getElementById('maya-details');
+    const ccDetails = document.getElementById('cc-details'); 
+    const selectedRadio = document.querySelector('input[name="paymentMethod"]:checked');
+
+    // 1. Clear all selection highlighting and close all details
+    allContainers.forEach(container => container.classList.remove('selected'));
+    
+    const allDetails = [gcashDetails, mayaDetails, ccDetails];
+    allDetails.forEach(detailDiv => {
+        detailDiv.classList.remove('open');
+        detailDiv.querySelectorAll('input').forEach(input => input.value = '');
+    });
+    
+
+    if (!selectedRadio) return; 
+
+    const selectedMethod = selectedRadio.value;
+    const selectedContainer = selectedRadio.closest('.payment-item-container');
+    
+    // 2. Highlight the selected main container
+    if (selectedContainer) {
+        selectedContainer.classList.add('selected');
+    }
+
+    // 3. Show the relevant details box
+    if (selectedMethod === 'GCash') {
+        gcashDetails.classList.add('open');
+    } else if (selectedMethod === 'Maya') {
+        mayaDetails.classList.add('open');
+    } else if (selectedMethod === 'Credit/Debit Card') {
+        ccDetails.classList.add('open');
+    }
+}
+
+
 function proceedToPayment() {
     let name = document.getElementById("fullname").value;
     let contact = document.getElementById("contact").value;
     let address = document.getElementById("address").value;
-    let payment = document.getElementById("paymentMethod").value;
+    
+    let paymentRadio = document.querySelector('input[name="paymentMethod"]:checked');
+    let payment = paymentRadio ? paymentRadio.value : null;
 
     if (!name || !contact || !address) {
         alert("Please complete all delivery details.");
@@ -141,17 +422,88 @@ function proceedToPayment() {
         return;
     }
 
-    // Save info to localStorage
+    // --- VALIDATION & LOCAL STORAGE SAVING ---
+    
+    if (payment === 'GCash') {
+        const gcashName = document.getElementById('gcash-name').value;
+        const gcashNumber = document.getElementById('gcash-number').value;
+
+        if (!gcashName || !gcashNumber) {
+            alert("Please enter your GCash Account Name and Mobile Number.");
+            return;
+        }
+        localStorage.setItem("gcashAccount", gcashName);
+        localStorage.setItem("gcashNumber", gcashNumber);
+    }
+    
+    if (payment === 'Maya') {
+        const mayaName = document.getElementById('maya-name').value;
+        const mayaNumber = document.getElementById('maya-number').value;
+
+        if (!mayaName || !mayaNumber) {
+            alert("Please enter your Maya Account Name and Mobile Number.");
+            return;
+        }
+        localStorage.setItem("mayaAccount", mayaName);
+        localStorage.setItem("mayaNumber", mayaNumber);
+    }
+
+    if (payment === 'Credit/Debit Card') {
+        const ccNumber = document.getElementById('cc-number').value;
+        const ccExpiry = document.getElementById('cc-expiry').value;
+        const ccCVV = document.getElementById('cc-cvv').value;
+        const ccName = document.getElementById('cc-name').value;
+
+        if (!ccNumber || !ccExpiry || !ccCVV || !ccName) {
+            alert("Please enter all Credit/Debit Card details (Number, Expiry, CVV, and Name).");
+            return;
+        }
+        
+        localStorage.setItem("ccNumber", ccNumber);
+        localStorage.setItem("ccExpiry", ccExpiry);
+        localStorage.setItem("ccCVV", ccCVV);
+        localStorage.setItem("ccName", ccName);
+    }
+    // --- END VALIDATION & LOCAL STORAGE SAVING ---
+
+    // Save core info to localStorage
     localStorage.setItem("customerName", name);
     localStorage.setItem("customerContact", contact);
     localStorage.setItem("customerAddress", address);
     localStorage.setItem("paymentMethod", payment);
 
+    // Clear conflicting details (safety net)
+    if (payment !== 'GCash') {
+        localStorage.removeItem("gcashAccount");
+        localStorage.removeItem("gcashNumber");
+    }
+    if (payment !== 'Maya') {
+        localStorage.removeItem("mayaAccount");
+        localStorage.removeItem("mayaNumber");
+    }
+    if (payment !== 'Credit/Debit Card') {
+        localStorage.removeItem("ccNumber");
+        localStorage.removeItem("ccExpiry");
+        localStorage.removeItem("ccCVV");
+        localStorage.removeItem("ccName");
+    }
+    
     window.location = "receipt.html";
 }
 
 
 loadCart();
+
+// Attach event listeners to all payment radio buttons
+document.addEventListener('DOMContentLoaded', () => {
+    const paymentRadios = document.querySelectorAll('input[name="paymentMethod"]');
+    paymentRadios.forEach(radio => {
+        radio.addEventListener('change', handlePaymentChange);
+    });
+    
+    // Run the handler once on load to establish the initial state
+    handlePaymentChange();
+});
 </script>
 
 </body>
