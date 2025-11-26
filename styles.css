@@ -1,0 +1,287 @@
+/* Reset and Body Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Arial', sans-serif;
+}
+
+body {
+    background-color: #f5f5f5;
+    color: #333;
+}
+
+/* --- HEADER STYLES (Applies to all pages) --- */
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 50px;
+    background-color: #1e3932; /* DARK GREEN Background */
+    box-shadow: 0 2px 6px rgba(0,0,0,0.4); 
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+.logo {
+    font-size: 28px;
+    font-weight: bold;
+    color: #fff; /* White Text */
+}
+
+nav a {
+    text-decoration: none;
+    color: #fff; /* White Text */
+    margin-left: 25px;
+    font-weight: 500;
+    transition: color 0.3s;
+}
+
+nav a:hover {
+    color: #d8e6d2; /* Light green on hover */
+}
+
+/* --- HERO SECTION (index.html) --- */
+.hero {
+    background: url('background.jpg') center/cover no-repeat;
+    height: 80vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    color: #fff;
+    padding: 0 20px;
+}
+
+.hero h2 {
+    font-size: 48px;
+    margin-bottom: 15px;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+}
+
+.hero p {
+    font-size: 20px;
+    margin-bottom: 25px;
+    text-shadow: 1px 1px 3px rgba(0,0,0,0.5);
+}
+
+/* Base Button Style (used for hero and featured section) */
+.btn { 
+    padding: 15px 35px;
+    background-color: #1e3932;
+    color: #fff;
+    text-decoration: none;
+    font-size: 18px;
+    border-radius: 30px;
+    transition: background-color 0.3s;
+    border: none;
+}
+
+.btn:hover {
+    background-color: #145233;
+}
+
+
+/* --- FEATURED DRINKS SECTION (index.html) --- */
+.featured {
+    padding: 60px 50px;
+    text-align: center;
+    background-color: #fff;
+}
+
+.featured h3 {
+    font-size: 32px;
+    margin-bottom: 40px;
+    color: #1e3932;
+}
+
+.drinks-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 30px;
+}
+
+.drink-card {
+    background-color: #f9f9f9;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    transition: transform 0.3s;
+}
+
+.drink-card:hover {
+    transform: translateY(-5px);
+}
+
+.drink-card img {
+    width: 50%;
+    height: 200px;
+    object-fit: cover;
+}
+
+.drink-card .content {
+    padding: 20px;
+}
+
+.drink-card .content h4 {
+    margin-bottom: 10px;
+    color: #1e3932;
+}
+
+.drink-card .content p {
+    margin-bottom: 15px;
+    font-size: 16px;
+}
+
+/* --- PRODUCT PAGE STYLES (products.html) --- */
+
+.section-title { 
+    text-align: center; 
+    color: #1e3932;
+    border-bottom: 3px solid #d8e6d2; 
+    width: fit-content;
+    margin: 30px auto; 
+    padding-bottom: 5px;
+}
+
+.product-grid {
+    display:grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap:20px;
+    padding:20px;
+}
+
+.product {
+    background: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    text-align: center;
+    border-top: 5px solid #1e3932; 
+    transition: all 0.3s;
+}
+
+.product:hover {
+    box-shadow: 0 4px 10px rgba(30, 57, 50, 0.3);
+    transform: translateY(-2px);
+}
+
+.prod-img {
+    width:100%;
+    height:150px;
+    background:#c9c9c9;
+    border-radius:10px;
+    background-size:cover;
+    background-position:center;
+}
+
+/* --- MENU PAGE SPACING FIX (Price and Button Separation) --- */
+
+/* Targets the price text (<p>) to push the button down */
+.product p {
+    margin-bottom: 15px; /* Creates vertical space between price and button */
+    margin-top: 10px; /* Creates space between product name and price */
+    font-size: 18px;
+    font-weight: bold;
+    color: #333;
+}
+
+/* Targets the button to style it like the reference image */
+.product button {
+    padding: 8px 15px;
+    background: #fff;
+    color: #1e3932;
+    border: 1px solid #1e3932; 
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 500;
+    transition: all 0.2s;
+}
+
+.product button:hover {
+    background-color: #1e3932;
+    color: #fff;
+}
+
+/* --- PRODUCT IMAGE CLASSES --- */
+.coffee1 { background-image:url('caramel\ latte.jpg'); }
+.coffee2 { background-image:url('vanilla\ cold\ brew.jpg'); }
+.coffee3 { background-image:url('matcha\ frappe.jpg'); }
+.coffee4 { background-image:url('mocha\ espresso.jpg'); }
+.coffee5 { background-image:url('hazelnut\ latte.jpg'); }
+.coffee6 { background-image:url('classic\ americano.jpg'); }
+.coffee7 { background-image:url('dark\ chocolate\ frappe.jpg'); }
+.coffee8 { background-image:url('strawberry\ milk\ brew.jpg'); }
+.coffee9 { background-image:url('Cream\ Frappucino.jpg'); }
+.coffee10 { background-image:url('spanish\ latte.jpg'); }
+
+
+#cart-list p {
+margin-bottom: 8px; 
+font-size: 16px; 
+
+}
+
+/* --- CHECKOUT/FORM STYLES --- */
+.checkout-card {
+    background: #fff;
+    padding: 20px;
+    width: 80%;
+    max-width: 700px;
+    margin: 20px auto;
+    border-radius: 10px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+.total-row {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+    font-size: 18px;
+    border-top: 1px solid #ddd;
+    padding-top: 10px;
+}
+
+.delivery-form {
+    width: 80%;
+    max-width: 700px;
+    margin: 20px auto;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.delivery-form input {
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    font-size: 16px;
+}
+
+.checkout-buttons {
+    width: 80%;
+    max-width: 700px;
+    margin: 20px auto;
+    display: flex;
+    gap: 10px;
+}
+
+.checkout-buttons .btn {
+    flex: 1;
+    text-align: center;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+
+/* FOOTER */
+footer {
+    background-color: #1e3932;
+    color: #fff;
+    text-align: center;
+    padding: 20px 0;
+    margin-top: 50px;
+}

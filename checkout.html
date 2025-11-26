@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Checkout</title>
+
+<link rel="stylesheet" href="styles.css">
+<script defer src="script.js"></script>
+
+<style>
+    .card {
+        background: #fff;
+        padding: 20px;
+        width: 90%;
+        max-width: 800px;
+        margin: 20px auto;
+        border-radius: 10px;
+        box-shadow: 0 3px 8px rgba(0,0,0,0.15);
+    }
+
+    .total-row {
+        display: flex;
+        justify-content: space-between;
+        margin-top: 15px;
+        font-size: 20px;
+        font-weight: bold;
+    }
+
+    .delivery-box {
+        width: 90%;
+        max-width: 800px;
+        margin: 10px auto 30px;
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+    }
+
+    .delivery-box input, .delivery-box select {
+        padding: 12px;
+        border-radius: 6px;
+        border: 1px solid #ccc;
+        font-size: 16px;
+    }
+
+    .btn-box {
+        width: 90%;
+        max-width: 800px;
+        margin: 0 auto 60px;
+        display: flex;
+        gap: 10px;
+    }
+</style>
+
+</head>
+<body>
+
+<header>
+  <h1 class="logo">Brew Haven</h1>
+  <nav>
+    <a href="index.html">Home</a>
+    <a href="products.html">Menu</a>
+    <a href="checkout.html">Checkout</a>
+  </nav>
+</header>
+
+<h2 class="section-title">Your Order</h2>
+
+
+<div class="card">
+    <div id="cart-list"></div>
+
+    <div class="total-row">
+        <span>Total:</span>
+        <span id="total">₱0</span>
+    </div>
+</div>
+
+<h2 class="section-title">Delivery Details</h2>
+
+
+<div class="delivery-box">
+    <input type="text" id="fullname" placeholder="Full name">
+    <input type="text" id="contact" placeholder="Contact number">
+    <input type="text" id="address" placeholder="Delivery address">
+    
+   
+    <select id="paymentMethod">
+        <option value="" disabled selected>Select Payment Method</option>
+        <option value="gcash">GCash</option>
+        <option value="maya">Maya</option>
+        <option value="credit_card">Credit Card</option>
+        <option value="cod">Cash on Delivery</option>
+    </select>
+</div>
+
+
+<div class="btn-box">
+    <button class="btn" onclick="window.location='products.html'">Continue Shopping</button>
+    <button class="btn" onclick="proceedToPayment()">Place Order</button>
+    <button class="btn" onclick="clearCart()">Clear Cart</button>
+</div>
+
+<script>
+let cart = JSON.parse(localStorage.getItem("cart")) || [];
+
+function loadCart() {
+    let cartList = document.getElementById("cart-list");
+    let total = 0;
+    cartList.innerHTML = "";
+
+    cart.forEach(item => {
+        cartList.innerHTML += `<p>${item.name} - ₱${item.price}</p>`;
+        total += item.price;
+    });
+
+    document.getElementById("total").textContent = total;
+}
+
+function clearCart() {
+    localStorage.removeItem("cart");
+    cart = [];
+    loadCart();
+    alert("Cart cleared!");
+}
+
+function proceedToPayment() {
+    let name = document.getElementById("fullname").value;
+    let contact = document.getElementById("contact").value;
+    let address = document.getElementById("address").value;
+    let payment = document.getElementById("paymentMethod").value;
+
+    if (!name || !contact || !address) {
+        alert("Please complete all delivery details.");
+        return;
+    }
+
+    if (!payment) {
+        alert("Please select a payment method.");
+        return;
+    }
+
+    // Save info to localStorage
+    localStorage.setItem("customerName", name);
+    localStorage.setItem("customerContact", contact);
+    localStorage.setItem("customerAddress", address);
+    localStorage.setItem("paymentMethod", payment);
+
+    window.location = "receipt.html";
+}
+
+
+loadCart();
+</script>
+
+</body>
+</html>
