@@ -14,7 +14,7 @@ body {
 /* --- HEADER STYLES (Applies to all pages) --- */
 header {
     display: flex;
-    justify-content: space-between;
+    justify-content: space-between; /* This spaces out the logo and nav group */
     align-items: center;
     padding: 20px 50px;
     background-color: #1e3932; /* DARK GREEN Background */
@@ -284,4 +284,38 @@ footer {
     text-align: center;
     padding: 20px 0;
     margin-top: 50px;
+}
+
+/* -------------------------------------------------------------------------- */
+/* --- MOBILE RESPONSIVENESS FIX: For screens <= 768px (Phones and Tablets) --- */
+/* -------------------------------------------------------------------------- */
+@media (max-width: 768px) {
+    /* 1. Reduce overall header padding for smaller screens */
+    header {
+        padding: 15px 20px; /* Reduced padding on top/bottom and sides */
+    }
+
+    /* 2. Stack the logo and navigation links vertically if needed */
+    /* If the links are still overlapping, you can change the header to column layout */
+    /* header {
+        flex-direction: column;
+        text-align: center;
+    }
+    .logo {
+        margin-bottom: 10px;
+    } */
+
+    /* 3. Reduce the spacing between the navigation links */
+    nav a {
+        margin-left: 10px; /* Much smaller margin between links */
+        margin-right: 10px;
+        font-size: 14px; /* Slightly smaller text for better fit */
+    }
+
+    /* 4. Ensure navigation container is centered or wraps */
+    nav {
+        display: flex; /* Keep links in a row */
+        justify-content: center; /* Center the links */
+        flex-wrap: wrap; /* Allows links to wrap to the next line if they still don't fit */
+    }
 }
