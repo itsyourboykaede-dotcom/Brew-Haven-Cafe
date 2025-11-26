@@ -287,35 +287,70 @@ footer {
 }
 
 /* -------------------------------------------------------------------------- */
-/* --- MOBILE RESPONSIVENESS FIX: For screens <= 768px (Phones and Tablets) --- */
+/* --- HAMBURGER MENU & MOBILE RESPONSIVENESS FIX --- */
 /* -------------------------------------------------------------------------- */
+
+/* Default: Hide hamburger button on Desktop */
+.hamburger-menu {
+    display: none; 
+    cursor: pointer;
+    font-size: 30px;
+    background: none;
+    border: none;
+    color: #fff;
+    padding: 5px;
+}
+
+/* Default: Keep nav links in a row on Desktop */
+.nav-links {
+    display: flex;
+}
+
+/* --- Media Query for Mobile (Screen width <= 768px) --- */
 @media (max-width: 768px) {
-    /* 1. Reduce overall header padding for smaller screens */
+    
+    /* 1. Make the Header a column container */
     header {
-        padding: 15px 20px; /* Reduced padding on top/bottom and sides */
+        flex-wrap: wrap; /* Allow wrapping */
+        padding: 15px 20px; /* Adjust padding for mobile */
     }
 
-    /* 2. Stack the logo and navigation links vertically if needed */
-    /* If the links are still overlapping, you can change the header to column layout */
-    /* header {
-        flex-direction: column;
+    /* 2. Show the Hamburger Icon */
+    .hamburger-menu {
+        display: block; /* Show the icon */
+        order: 2; /* Place the icon on the far right */
+        margin-left: auto; /* Push it to the right */
+    }
+
+    /* 3. Collapse/Hide the Navigation Links by default */
+    .nav-links {
+        display: none; /* Hidden by default */
+        flex-direction: column; /* Stack links vertically */
+        width: 100%; /* Make it take full width */
         text-align: center;
+        order: 3; /* Place it below the logo and icon */
+        margin-top: 10px;
+        background-color: #145233; /* Slightly lighter background for the menu */
+        padding: 10px 0;
     }
+
+    /* 4. Style the links inside the collapsed menu */
+    .nav-links a {
+        margin: 10px 0; /* Add vertical padding */
+        padding: 8px 0;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    }
+    .nav-links a:last-child {
+        border-bottom: none;
+    }
+    
+    /* State for when the menu is open (Toggled by JavaScript) */
+    .nav-links.open {
+        display: flex; /* Show the menu when the 'open' class is added */
+    }
+
+    /* Ensure logo stays on the left */
     .logo {
-        margin-bottom: 10px;
-    } */
-
-    /* 3. Reduce the spacing between the navigation links */
-    nav a {
-        margin-left: 10px; /* Much smaller margin between links */
-        margin-right: 10px;
-        font-size: 14px; /* Slightly smaller text for better fit */
-    }
-
-    /* 4. Ensure navigation container is centered or wraps */
-    nav {
-        display: flex; /* Keep links in a row */
-        justify-content: center; /* Center the links */
-        flex-wrap: wrap; /* Allows links to wrap to the next line if they still don't fit */
+        order: 1; 
     }
 }
