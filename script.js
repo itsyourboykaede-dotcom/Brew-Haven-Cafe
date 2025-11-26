@@ -26,23 +26,3 @@ function clearCart(){
 }
 
 window.onload = loadCart;
-
-document.addEventListener('DOMContentLoaded', () => {
-    // Check if the hamburger button exists on this page
-    const hamburger = document.querySelector('.hamburger-menu');
-    const navLinks = document.querySelector('.nav-links');
-
-    if (hamburger && navLinks) {
-        // Toggle the 'open' class on click
-        hamburger.addEventListener('click', () => {
-            navLinks.classList.toggle('open');
-        });
-        
-        // OPTIONAL: Close the menu when a link is clicked (good for single-page apps)
-        navLinks.querySelectorAll('a').forEach(link => {
-            link.addEventListener('click', () => {
-                navLinks.classList.remove('open');
-            });
-        });
-    }
-});
