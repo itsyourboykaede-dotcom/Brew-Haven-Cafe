@@ -57,7 +57,7 @@
     /* Assign equal width to the two main sections */
     .section {
         flex: 1; 
-        margin: 0; /* Remove top/bottom margin here */
+        margin: 0; 
     }
 
     .section h4 {
@@ -84,7 +84,7 @@
     table {
         width: 100%;
         border-collapse: collapse;
-        margin-top: 5px; /* Reduced margin */
+        margin-top: 5px; 
     }
 
     /* Remove ALL borders */
@@ -99,9 +99,9 @@
 
     /* 🟢 FIX: Padding added to separate Price from Qty */
     .price-column {
-        padding-left: 15px; /* Increased space from the left (Item Name) */
-        padding-right: 25px; /* Increased space before the Qty column */
-        text-align: right; /* Ensure price is right-aligned */
+        padding-left: 15px; 
+        padding-right: 25px; 
+        text-align: right; 
     }
 
     .align-center {
@@ -185,14 +185,15 @@
         background: #145233;
     }
 
-    /* Mobile Responsiveness: Stack columns on small screens */
+    /* 🔴 CRITICAL MOBILE FIX: Force stacking and ensure the card is fluid */
     @media (max-width: 768px) {
         .receipt-content {
-            flex-direction: column;
+            flex-direction: column; /* Stacks the customer info and order summary */
             gap: 20px;
         }
         .receipt-card {
-            margin: 20px;
+            max-width: 100%; /* Ensures the card uses available width */
+            margin: 20px 10px; /* Smaller side margin for full width on mobile */
             padding: 20px;
         }
     }
