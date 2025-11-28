@@ -358,3 +358,32 @@ footer {
     }
 }
 
+/* --- New: Media Query for Extra Small Screens (e.g., most phones) --- */
+@media (max-width: 500px) {
+    /* Adjust padding on the main header for extra narrow phones */
+    header {
+        padding: 10px 15px; 
+    }
+
+    /* Reduce large Hero text on the homepage */
+    .hero h2 {
+        font-size: 36px;
+    }
+
+    .hero p {
+        font-size: 18px; 
+    }
+
+    /* Reduce button size for better fit */
+    .btn {
+        padding: 10px 25px;
+        font-size: 16px;
+    }
+
+    /* For forms and large elements, ensure they use more screen space */
+    .checkout-card,
+    .delivery-form,
+    .checkout-buttons {
+        width: 95%; 
+    }
+}
