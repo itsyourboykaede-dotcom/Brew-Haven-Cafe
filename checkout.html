@@ -5,6 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Checkout</title>
 
+<link rel="stylesheet" href="styles.css"> 
 <style>
 /* --- GENERAL CARD & LAYOUT STYLES --- */
 body {
@@ -53,6 +54,7 @@ header {
     color: #1e3932;
 }
 
+/* FIX: Checkout Card Styling (Item 6) */
 .card {
     background: #fff;
     padding: 20px;
@@ -61,7 +63,12 @@ header {
     margin: 20px auto;
     border-radius: 10px;
     box-shadow: 0 3px 8px rgba(0,0,0,0.15);
+    /* NEW: Black Border */
+    border: 1px solid #000; 
+    /* NEW: Light Color Background inside */
+    background-color: #fcfcfc; 
 }
+
 
 .total-row {
     display: flex;
@@ -69,6 +76,8 @@ header {
     margin-top: 15px;
     font-size: 20px;
     font-weight: bold;
+    border-top: 1px solid #ccc;
+    padding-top: 10px;
 }
 
 .delivery-box {
@@ -106,7 +115,7 @@ header {
     transition: background-color 0.2s;
 }
 
-/* FIX: Ensure Continue Shopping and Clear Cart buttons are green */
+/* Ensure Continue Shopping and Clear Cart buttons are green */
 .btn:nth-child(1) { /* Continue Shopping Button */
     background-color: #1e3932; /* A medium green color */
     color: white;
@@ -247,18 +256,21 @@ header {
     <nav class="nav-links">
         <a href="index.html">Home</a>
         <a href="products.html">Menu</a>
+        <a href="cart.html">Cart</a>
         <a href="checkout.html">Checkout</a>
     </nav>
 </header>
 
-<h2 class="section-title">Your Order</h2>
+<h2 class="section-title">Order Summary</h2>
 
 <div class="card">
-    <div id="cart-list"></div>
+    <div id="cart-summary">
+        <p>Items (Count: <span id="item-count">0</span>)</p>
+    </div>
 
     <div class="total-row">
-        <span>Total:</span>
-        <span id="total">₱0</span>
+        <span>Total Due:</span>
+        <span id="total">₱0.00</span>
     </div>
 </div>
 
@@ -335,24 +347,36 @@ header {
     <button class="btn" onclick="clearCart()">Clear Cart</button>
 </div>
 
+<script defer src="script.js"></script>
+
 <script>
 let cart = JSON.parse(localStorage.getItem("cart")) || [];
 
-function loadCart() {
-    let cartList = document.getElementById("cart-list");
-    let total = 0;
-    cartList.innerHTML = "";
+function calculateTotal() {
+    return cart.reduce((total, item) => total + (item.price * item.quantity), 0);
+}
 
-    cart.forEach(item => {
-        cartList.innerHTML += `<p>${item.name} - ₱${item.price}</p>`;
-        total += item.price;
-    });
+function calculateItemCount() {
+    return cart.reduce((count, item) => count + item.quantity, 0);
+}
 
-    document.getElementById("total").textContent = `₱${total}`; 
+function loadCheckoutSummary() {
+    const total = calculateTotal();
+    const itemCount = calculateItemCount();
+    
+    document.getElementById("item-count").textContent = itemCount;
+    document.getElementById("total").textContent = `₱${total.toFixed(2)}`; 
+    
+    // Redirect if cart is empty
+    if (itemCount === 0) {
+        alert("Your cart is empty. Please add items before proceeding.");
+        window.location = "products.html";
+    }
 }
 
 function clearCart() {
     localStorage.removeItem("cart");
+    // Also clear specific payment details just in case
     localStorage.removeItem("gcashAccount");
     localStorage.removeItem("gcashNumber");
     localStorage.removeItem("mayaAccount");
@@ -362,7 +386,7 @@ function clearCart() {
     localStorage.removeItem("ccCVV");
     localStorage.removeItem("ccName"); 
     cart = [];
-    loadCart();
+    loadCheckoutSummary(); // Will redirect due to empty cart
     alert("Cart cleared!");
 }
 
@@ -379,7 +403,8 @@ function handlePaymentChange() {
     const allDetails = [gcashDetails, mayaDetails, ccDetails];
     allDetails.forEach(detailDiv => {
         detailDiv.classList.remove('open');
-        detailDiv.querySelectorAll('input').forEach(input => input.value = '');
+        // Do NOT clear input values here. Input values should persist 
+        // until the user successfully places the order or leaves the page.
     });
     
 
@@ -405,6 +430,11 @@ function handlePaymentChange() {
 
 
 function proceedToPayment() {
+    if (calculateItemCount() === 0) {
+        alert("Your cart is empty. Please add items before placing an order.");
+        return;
+    }
+    
     let name = document.getElementById("fullname").value;
     let contact = document.getElementById("contact").value;
     let address = document.getElementById("address").value;
@@ -492,10 +522,10 @@ function proceedToPayment() {
 }
 
 
-loadCart();
-
 // Attach event listeners to all payment radio buttons
 document.addEventListener('DOMContentLoaded', () => {
+    loadCheckoutSummary(); // Load summary and check if cart is empty
+    
     const paymentRadios = document.querySelectorAll('input[name="paymentMethod"]');
     paymentRadios.forEach(radio => {
         radio.addEventListener('change', handlePaymentChange);

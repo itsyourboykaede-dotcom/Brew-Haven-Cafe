@@ -1,31 +1,25 @@
 let cart = JSON.parse(localStorage.getItem("cart")) || [];
 
+// Updated structure: [{name: "Caramel Latte", price: 150, quantity: 2}]
+
 function addToCart(name, price){
-  cart.push({name,price});
+  // Check if item already exists in the cart
+  let existingItem = cart.find(item => item.name === name);
+
+  if(existingItem) {
+    existingItem.quantity += 1; // Increment quantity
+  } else {
+    // Add new item with quantity 1
+    cart.push({name, price, quantity: 1}); 
+  }
+  
   localStorage.setItem("cart",JSON.stringify(cart));
-  alert(name + " added to cart!");
+  alert(name + " added to cart! Total quantity: " + (existingItem ? existingItem.quantity : 1));
 }
 
-function loadCart(){
-  let list = document.getElementById("cart-list");
-  if (!list) return;
-  let html = "";
-  let total = 0;
-  cart.forEach(item=>{
-    html += `<p>${item.name} - ₱${item.price}</p>`;
-    total += item.price;
-  });
-  list.innerHTML = html;
-  document.getElementById("total").innerText = "Total: ₱" + total;
-}
+// NOTE: loadCart and clearCart logic is now implemented in cart.html 
+// and checkout.html to handle the new cart structure.
 
-function clearCart(){
-  cart = [];
-  localStorage.setItem("cart","[]");
-  loadCart();
-}
-
-window.onload = loadCart;
 document.addEventListener('DOMContentLoaded', () => {
     // Check if the hamburger button exists on this page
     const hamburger = document.querySelector('.hamburger-menu');
