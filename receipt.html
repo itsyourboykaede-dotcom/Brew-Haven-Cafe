@@ -3,145 +3,251 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Receipt</title>
+<title>Order Receipt - Brew Haven</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&family=Prata&family=Montserrat:wght@400;500;700&display=swap" rel="stylesheet">
 
 <style>
+    /* -------------------------------------------------------------------------- */
+    /* --- STYLES REVISED FOR TWO-COLUMN LAYOUT AND AESTHETICS --- */
+    /* -------------------------------------------------------------------------- */
     body {
-        font-family: 'Roboto', Arial, sans-serif;
-        background: #f5f5f5;
+        font-family: 'Montserrat', 'Roboto', Arial, sans-serif;
+        background-color: #f5f5f5; /* Fallback color if the image fails to load */
         margin: 0;
         padding: 0;
+        background-image: url('checkout.jpg'); /* 👈 Ensure this filename is correct */
+        background-size: cover;
+        background-position: center;
+        background-attachment: fixed; 
     }
 
     .receipt-card {
-        max-width: 800px;
+        max-width: 1000px; /* Increased max width to accommodate two columns comfortably */
         margin: 50px auto;
         background: #fff;
-        padding: 30px;
-        border-radius: 10px;
-        box-shadow: 0 3px 8px rgba(0,0,0,0.15);
+        padding: 40px; 
+        border-radius: 15px; 
+        box-shadow: 0 5px 15px rgba(0,0,0,0.1); 
     }
 
-    h2, h3 {
+    h2 {
         text-align: center;
-        font-family: 'Roboto', Arial, sans-serif;
+        font-family: 'Prata', serif; 
+        font-size: 32px; 
+        color: #1e3932; 
+        margin-bottom: 5px;
+    }
+    
+    .tagline {
+        text-align: center;
+        font-size: 14px;
+        color: #b5883d; 
+        margin-top: -5px;
+        margin-bottom: 25px;
+        font-style: italic;
     }
 
+    /* CRITICAL CHANGE: Flexbox container for the two main columns */
+    .receipt-content {
+        display: flex;
+        gap: 40px; /* Space between Customer Details and Order Summary */
+    }
+
+    /* Assign equal width to the two main sections */
     .section {
-        margin: 20px 0;
-        font-family: 'Roboto', Arial, sans-serif;
+        flex: 1; 
+        margin: 0; /* Remove top/bottom margin here */
     }
 
     .section h4 {
+        /* Styled to look like 'Customer Information' / 'Order Summary' labels */
         color: #1e3932;
-        border-bottom: 2px solid #eee;
+        border-bottom: none; 
         padding-bottom: 5px;
-        margin-bottom: 15px;
+        margin-bottom: 10px;
+        font-family: 'Montserrat', sans-serif;
+        font-weight: 700; 
+        text-transform: uppercase;
+        font-size: 14px;
+        letter-spacing: 1px;
     }
     
     .section p {
-        margin: 6px 0;
-        padding-left: 10px;
+        margin: 8px 0; 
+        padding-left: 0; 
+        font-size: 15px;
+        color: #444;
     }
 
+    /* --- TABLE STYLING --- */
     table {
         width: 100%;
         border-collapse: collapse;
-        margin-top: 10px;
-        font-family: 'Roboto', Arial, sans-serif;
+        margin-top: 5px; /* Reduced margin */
     }
 
+    /* Remove ALL borders */
     table, th, td {
-        border: 1px solid #ccc;
+        border: none !important; 
     }
 
     th, td {
-        padding: 10px;
+        padding: 10px 0; 
         text-align: left;
+    }
+
+    /* 🟢 FIX: Padding added to separate Price from Qty */
+    .price-column {
+        padding-left: 15px; /* Increased space from the left (Item Name) */
+        padding-right: 25px; /* Increased space before the Qty column */
+        text-align: right; /* Ensure price is right-aligned */
+    }
+
+    .align-center {
+        text-align: center;
+    }
+    
+    
+    table thead {
+        border-bottom: 1px solid #ddd; 
     }
     
     table thead th {
-        background-color: #f5f5f5;
+        background-color: #fff; 
+        font-weight: 500;
+        color: #555;
+        padding-top: 0;
+        padding-bottom: 10px;
     }
-
-
-    .total {
-        font-weight: bold;
+    
+    /* Utility classes for alignment */
+    .align-right {
         text-align: right;
-        margin-top: 10px;
-        font-family: 'Roboto', Arial, sans-serif;
+    }
+    .align-center {
+        text-align: center;
+    }
+    
+    /* Style for the item list */
+    #receipt-body tr {
+        border-bottom: 1px solid #f0f0f0; 
+    }
+    
+    /* Style for the summary lines (Subtotal, Shipping) */
+    .summary-row td {
+        padding-top: 10px;
+        padding-bottom: 5px;
+        font-weight: normal;
+        color: #444;
+        font-size: 16px;
+    }
+    
+    /* Style for the final total row */
+    .final-total-row td {
+        font-weight: bold;
+        border-top: 2px solid #1e3932 !important; /* Thick dark green separator line */
         font-size: 20px;
         color: #1e3932;
-        padding-right: 10px;
+        padding-top: 15px;
+        margin-top: 15px;
     }
-
+    
+    /* --- BUTTON STYLES (Your Original Styles) --- */
     .btn-box {
         text-align: center;
-        margin-top: 30px;
-        font-family: 'Roboto', Arial, sans-serif;
+        margin-top: 40px;
     }
 
     .btn {
-        padding: 12px 25px;
+        padding: 15px 35px; 
         font-size: 16px;
         border: none;
-        border-radius: 6px;
+        border-radius: 8px;
         background: #1e3932;
         color: white;
         cursor: pointer;
-        font-family: 'Roboto', Arial, sans-serif;
-        margin: 0 5px;
+        margin: 0 10px;
+        transition: background-color 0.3s;
+        font-weight: 600;
     }
 
     .btn:hover {
-        background: #3b6056;
+        background: #145233;
     }
+    
+    /* Reverting .btn-secondary to your preferred dark green style */
+    .btn-secondary {
+        background: #1e3932;
+        color: white;
+    }
+    .btn-secondary:hover {
+        background: #145233;
+    }
+
+    /* Mobile Responsiveness: Stack columns on small screens */
+    @media (max-width: 768px) {
+        .receipt-content {
+            flex-direction: column;
+            gap: 20px;
+        }
+        .receipt-card {
+            margin: 20px;
+            padding: 20px;
+        }
+    }
+
 </style>
-
-
 </head>
 <body>
 
 <div class="receipt-card">
-    <h2>Brew Haven</h2>
-    <h3>Order Receipt</h3>
+    <h2>BREW HAVEN</h2>
+    <p class="tagline">Freshly Brewed, Always.</p> 
 
-    <div class="section" id="customer-info">
-        <h4>Customer Details</h4>
-        <p id="customerName"></p>
-        <p id="customerContact"></p>
-        <p id="customerAddress"></p>
-        <p id="paymentMethod"></p>
-        <div id="paymentDetails" style="margin-top: 10px; border-left: 3px solid #ddd; padding-left: 10px;">
+    <div class="receipt-content">
+        <div class="section" id="customer-info">
+            <h4>CUSTOMER INFORMATION</h4>
+            <p>👤 Name: <span id="customerName"></span></p>
+            <p>📞 Contact: <span id="customerContact"></span></p>
+            <p>📍 Address: <span id="customerAddress"></span></p>
+            
+            <div style="margin-top: 20px;">
+                <h4>PAYMENT METHOD</h4>
+                <p id="paymentMethod"></p>
+                <div id="paymentDetails" style="margin-top: 10px; border-left: 3px solid #ddd; padding-left: 10px;">
+                    </div>
             </div>
-    </div>
+        </div>
 
-    <div class="section" id="order-info">
-        <h4>Order Details</h4>
-        <table id="orderTable">
-            <thead>
-                <tr>
-                    <th>Item</th>
-                    <th>Price</th>
-                    <th>Qty</th>
-                    <th>Subtotal (₱)</th>
-                </tr>
-            </thead>
-            <tbody>
-                </tbody>
-        </table>
-        <p class="total">Grand Total: ₱<span id="totalAmount">0.00</span></p>
+        <div class="section" id="order-info">
+            <h4>ORDER SUMMARY</h4>
+            <table id="orderTable">
+                <thead>
+                    <tr>
+                        <th style="width: 50%;">Item</th>
+                        <th class="price-column">Price</th> <th class="align-center">Qty</th>
+                        <th class="align-right" style="padding-right: 0;">Subtotal (₱)</th>
+                    </tr>
+                </thead>
+                <tbody id="receipt-body">
+                    </tbody>
+            </table>
+        </div>
     </div>
 
     <div class="btn-box">
         <button class="btn" onclick="printReceipt()">Print Receipt</button>
-        <button class="btn" onclick="goHome()">Back to Home</button>
+        <button class="btn btn-secondary" onclick="goHome()">Back to Home</button>
     </div>
 </div>
 
 <script>
+    // --- Configuration ---
+    const SHIPPING_FEE = 60.00;
+    const CURRENCY_SYMBOL = "₱";
+    // ---------------------
+
     // Get core customer info from localStorage
     let cart = JSON.parse(localStorage.getItem("cart")) || [];
     let name = localStorage.getItem("customerName") || "N/A";
@@ -161,9 +267,9 @@
     let ccName = localStorage.getItem("ccName");
 
     // Display basic customer info
-    document.getElementById("customerName").textContent = "Name: " + name;
-    document.getElementById("customerContact").textContent = "Contact: " + contact;
-    document.getElementById("customerAddress").textContent = "Address: " + address;
+    document.getElementById("customerName").textContent = name;
+    document.getElementById("customerContact").textContent = contact;
+    document.getElementById("customerAddress").textContent = address;
     
     // Display main payment method
     document.getElementById("paymentMethod").textContent = "Payment Method: " + payment;
@@ -179,39 +285,66 @@
         detailsHTML += `<p>Account Name: <strong>${mayaAccount}</strong></p>`;
         detailsHTML += `<p>Mobile Number: <strong>${mayaNumber}</strong></p>`;
     } else if (payment === 'Credit/Debit Card' && ccNumber && ccExpiry && ccName) {
-        // Mask the card number for display
         const maskedCC = "•••• " + ccNumber.slice(-4);
         
         detailsHTML += `<p>Card Name: <strong>${ccName}</strong></p>`;
         detailsHTML += `<p>Card Number: <strong>${maskedCC}</strong></p>`;
         detailsHTML += `<p>Expiry: <strong>${ccExpiry}</strong></p>`;
+    } else if (payment === 'Cash on Delivery') {
+        detailsHTML += `<p>Payment due upon delivery.</p>`;
     }
     
     paymentDetailsDiv.innerHTML = detailsHTML;
 
 
-    // Load cart items (Updated for Quantity)
-    let tbody = document.querySelector("#orderTable tbody");
-    let total = 0;
+    // Load cart items 
+    let tbody = document.getElementById("receipt-body");
+    let cartSubtotal = 0; 
 
     cart.forEach(item => {
-        const subtotal = item.price * item.quantity;
+        const itemSubtotal = item.price * item.quantity;
         
         let row = document.createElement("tr");
         row.innerHTML = `
             <td>${item.name}</td>
-            <td>₱${item.price.toFixed(2)}</td>
-            <td>${item.quantity}</td>
-            <td>₱${subtotal.toFixed(2)}</td>
+            <td class="price-column">${CURRENCY_SYMBOL}${item.price.toFixed(2)}</td> <td class="align-center">${item.quantity}</td>
+            <td class="align-right" style="padding-right: 0;">${CURRENCY_SYMBOL}${itemSubtotal.toFixed(2)}</td>
         `;
         
         tbody.appendChild(row);
 
-        total += subtotal;
+        cartSubtotal += itemSubtotal;
     });
+    
+    // --- Add Summary Rows (Injecting breakdown into the table) ---
+    const finalTotal = cartSubtotal + SHIPPING_FEE;
 
-    // Format total price
-    document.getElementById("totalAmount").textContent = total.toFixed(2);
+    // Helper function to create summary rows
+    const createSummaryRow = (label, amount, isTotal = false) => {
+        let row = document.createElement("tr");
+        if (isTotal) {
+            row.classList.add("final-total-row");
+        } else {
+            row.classList.add("summary-row");
+        }
+        
+        row.innerHTML = `
+            <td colspan="3" class="align-right">${label}:</td>
+            <td class="align-right" style="padding-right: 0;">${CURRENCY_SYMBOL}${amount.toFixed(2)}</td>
+        `;
+        tbody.appendChild(row);
+    };
+
+    // 1. Subtotal Row
+    createSummaryRow("Subtotal", cartSubtotal);
+    
+    // 2. Shipping Fee Row
+    createSummaryRow("Shipping Fee", SHIPPING_FEE);
+    
+    // 3. Final Total Row
+    createSummaryRow("Total", finalTotal, true);
+    
+    // ----------------------------------------------------------------------------------
 
     // Functions
     function printReceipt() {
@@ -221,7 +354,7 @@
     function goHome() {
         // Clear all local storage data when the user goes home after the order
         localStorage.clear(); 
-        window.location = "index.html";
+        window.location = "index.html"; 
     }
 </script>
 
