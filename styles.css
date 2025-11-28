@@ -358,33 +358,3 @@ footer {
     }
 }
 
-@media (max-width: 768px) {
-    /* ... existing rules ... */
-    
-    /* 5. Adjust main section padding */
-    .mission-vision {
-        padding: 30px 20px; /* Reduced side padding for phone */
-    }
-
-    /* 6. Adjust header padding (Already done but verify) */
-    header {
-        padding: 10px 20px; /* Adjusting header padding for mobile */
-    }
-}
-
-/* --- Media Query for Extra Small Screens (e.g., most phones) --- */
-@media (max-width: 500px) {
-    /* Reduce large Hero text */
-    .hero h2 {
-        font-size: 36px; /* Reduced from 48px */
-    }
-
-    .hero p {
-        font-size: 18px; /* Reduced from 20px */
-    }
-
-    /* Reduce padding on the main header for extra narrow phones */
-    header {
-        padding: 10px 15px; 
-    }
-}
