@@ -1,187 +1,211 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Menu</title>
-<link rel="stylesheet" href="styles.css">
-<script defer src="script.js"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Menu - Brew Haven</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Prata&family=Montserrat:wght@400;500;700&display=swap" rel="stylesheet">
 </head>
 <body>
-<header>
-  <h1 class="logo">Brew Haven</h1>
-<button class="hamburger-menu" aria-label="Toggle Navigation">☰</button>
-<nav class="nav-links">
-    <a href="index.html">Home</a>
-    <a href="products.html">Menu</a>
-    <a href="cart.html">Cart</a>
-    <a href="checkout.html">Checkout</a>
-</nav>
-</header>
 
-<h2 class="section-title">Beverages</h2>
+    <header>
+        <div class="logo">Brew Haven</div>
+        <nav>
+            <button class="hamburger-menu">&#9776;</button>
+            <div class="nav-links">
+                <a href="index.html">Home</a>
+                <a href="products.html">Menu</a>
+                <a href="cart.html">Cart</a>
+                <a href="checkout.html">Checkout</a>
+            </div>
+        </nav>
+    </header>
 
-<div class="product-grid">
+    <div id="toast-notification" class="toast-hidden">Item added to cart!</div>
 
-  <div class="product">
-    <div class="prod-img coffee1"></div>
-    <h3>Caramel Latte</h3>
-    <p>₱150</p>
-    <button onclick="addToCart('Caramel Latte',150)">Add to Cart</button>
-  </div>
+    <main class="product-grid-container">
 
-  <div class="product">
-    <div class="prod-img coffee2"></div>
-    <h3>Vanilla Cold Brew</h3>
-    <p>₱170</p>
-    <button onclick="addToCart('Vanilla Cold Brew',170)">Add to Cart</button>
-  </div>
+        <h2 class="section-title">Beverages</h2>
+        <div class="product-grid">
+            
+            <div class="product">
+                <div class="prod-img coffee1"></div>
+                <h3>Caramel Latte</h3>
+                <p>₱150.00</p>
+                <button onclick="openModal('Caramel Latte', 150.00, 'caramel latte.jpg')">View Details</button>
+            </div>
+            
+            <div class="product">
+                <div class="prod-img coffee2"></div>
+                <h3>Vanilla Cold Brew</h3>
+                <p>₱160.00</p>
+                <button onclick="openModal('Vanilla Cold Brew', 160.00, 'vanilla cold brew.jpg')">View Details</button>
+            </div>
+            
+            <div class="product">
+                <div class="prod-img coffee3"></div>
+                <h3>Matcha Frappe</h3>
+                <p>₱180.00</p>
+                <button onclick="openModal('Matcha Frappe', 180.00, 'matcha frappe.jpg')">View Details</button>
+            </div>
+            
+            <div class="product">
+                <div class="prod-img coffee4"></div>
+                <h3>Mocha Espresso</h3>
+                <p>₱160.00</p>
+                <button onclick="openModal('Mocha Espresso', 160.00, 'mocha espresso.jpg')">View Details</button>
+            </div>
 
-  <div class="product">
-    <div class="prod-img coffee3"></div>
-    <h3>Matcha Frappe</h3>
-    <p>₱180</p>
-    <button onclick="addToCart('Matcha Frappe',180)">Add to Cart</button>
-  </div>
+            <div class="product">
+                <div class="prod-img coffee5"></div>
+                <h3>Hazelnut Latte</h3>
+                <p>₱155.00</p>
+                <button onclick="openModal('Hazelnut Latte', 155.00, 'hazelnut latte.jpg')">View Details</button>
+            </div>
 
-  <div class="product">
-    <div class="prod-img coffee4"></div>
-    <h3>Mocha Espresso</h3>
-    <p>₱160</p>
-    <button onclick="addToCart('Mocha Espresso',160)">Add to Cart</button>
-  </div>
+            <div class="product">
+                <div class="prod-img coffee6"></div>
+                <h3>Classic Americano</h3>
+                <p>₱120.00</p>
+                <button onclick="openModal('Classic Americano', 120.00, 'classic americano.jpg')">View Details</button>
+            </div>
+            
+            <div class="product">
+                <div class="prod-img coffee7"></div>
+                <h3>Dark Choco Frappe</h3>
+                <p>₱185.00</p>
+                <button onclick="openModal('Dark Choco Frappe', 185.00, 'dark chocolate frappe.jpg')">View Details</button>
+            </div>
 
-  <div class="product">
-    <div class="prod-img coffee5"></div>
-    <h3>Hazelnut Latte</h3>
-    <p>₱165</p>
-    <button onclick="addToCart('Hazelnut Latte',165)">Add to Cart</button>
-  </div>
+            <div class="product">
+                <div class="prod-img coffee8"></div>
+                <h3>Strawberry Milk Brew</h3>
+                <p>₱170.00</p>
+                <button onclick="openModal('Strawberry Milk Brew', 170.00, 'strawberry milk brew.jpg')">View Details</button>
+            </div>
+            
+            <div class="product">
+                <div class="prod-img coffee9"></div>
+                <h3>Cream Frappuccino</h3>
+                <p>₱175.00</p>
+                <button onclick="openModal('Cream Frappuccino', 175.00, 'Cream Frappucino.jpg')">View Details</button>
+            </div>
 
-  <div class="product">
-    <div class="prod-img coffee6"></div>
-    <h3>Classic Americano</h3>
-    <p>₱120</p>
-    <button onclick="addToCart('Classic Americano',120)">Add to Cart</button>
-  </div>
+            <div class="product">
+                <div class="prod-img coffee10"></div>
+                <h3>Spanish Latte</h3>
+                <p>₱165.00</p>
+                <button onclick="openModal('Spanish Latte', 165.00, 'spanish latte.jpg')">View Details</button>
+            </div>
 
-  <div class="product">
-    <div class="prod-img coffee7"></div>
-    <h3>Dark Chocolate Frappe</h3>
-    <p>₱185</p>
-    <button onclick="addToCart('Dark Chocolate Frappe',185)">Add to Cart</button>
-  </div>
+        </div>
 
-  <div class="product">
-    <div class="prod-img coffee8"></div>
-    <h3>Strawberry Milk Brew</h3>
-    <p>₱175</p>
-    <button onclick="addToCart('Strawberry Milk Brew',175)">Add to Cart</button>
-  </div>
+        <h2 class="section-title" style="margin-top: 50px;">Food and Desserts</h2>
+        <div class="product-grid">
 
-  <div class="product">
-    <div class="prod-img coffee9"></div>
-    <h3>Oreo Frappe</h3>
-    <p>₱190</p>
-    <button onclick="addToCart('Oreo Frappe',190)">Add to Cart</button>
-  </div>
+            <div class="product">
+                <div class="prod-img food1"></div>
+                <h3>Spaghetti</h3>
+                <p>₱250.00</p>
+                <button onclick="openModal('Spaghetti', 250.00, 'spaghetti.jpg')">View Details</button>
+            </div>
+            
+            <div class="product">
+                <div class="prod-img food2"></div>
+                <h3>Carbonara</h3>
+                <p>₱260.00</p>
+                <button onclick="openModal('Carbonara', 260.00, 'carbonara.jpg')">View Details</button>
+            </div>
+            
+            <div class="product">
+                <div class="prod-img food3"></div>
+                <h3>Burger</h3>
+                <p>₱190.00</p>
+                <button onclick="openModal('Burger', 190.00, 'burger.jpg')">View Details</button>
+            </div>
+            
+            <div class="product">
+                <div class="prod-img food4"></div>
+                <h3>Fries</h3>
+                <p>₱90.00</p>
+                <button onclick="openModal('Fries', 90.00, 'fries.jpg')">View Details</button>
+            </div>
 
-  <div class="product">
-    <div class="prod-img coffee10"></div>
+            <div class="product">
+                <div class="prod-img cake1"></div>
+                <h3>Chocolate Cake</h3>
+                <p>₱350.00</p>
+                <button onclick="openModal('Chocolate Cake', 350.00, 'chocolate.jpg')">View Details</button>
+            </div>
+
+            <div class="product">
+                <div class="prod-img cake2"></div>
+                <h3>Red Velvet Cake</h3>
+                <p>₱360.00</p>
+                <button onclick="openModal('Red Velvet Cake', 360.00, 'RedVelvet.jpg')">View Details</button>
+            </div>
+            
+            <div class="product">
+                <div class="prod-img cake3"></div>
+                <h3>Ube Cake</h3>
+                <p>₱380.00</p>
+                <button onclick="openModal('Ube Cake', 380.00, 'Ubecake.jpg')">View Details</button>
+            </div>
+
+            <div class="product">
+                <div class="prod-img macaron1"></div>
+                <h3>Mango Macaron</h3>
+                <p>₱50.00</p>
+                <button onclick="openModal('Mango Macaron', 50.00, 'mango.jpg')">View Details</button>
+            </div>
+
+            <div class="product">
+                <div class="prod-img macaron2"></div>
+                <h3>Pandan Macaron</h3>
+                <p>₱50.00</p>
+                <button onclick="openModal('Pandan Macaron', 50.00, 'pandan.jpg')">View Details</button>
+            </div>
+
+            <div class="product">
+                <div class="prod-img macaron3"></div>
+                <h3>Ube Macaron</h3>
+                <p>₱50.00</p>
+                <button onclick="openModal('Ube Macaron', 50.00, 'ube.jpg')">View Details</button>
+            </div>
+
+            <div class="product">
+                <div class="prod-img macaron4"></div>
+                <h3>Mixed Set</h3>
+                <p>₱200.00</p>
+                <button onclick="openModal('Mixed Set', 200.00, 'mixed.jpg')">View Details</button>
+            </div>
+            
+        </div>
+        
+    </main>
+
+    <div id="productModal" class="modal">
+        <div class="modal-content">
+            <span class="close-btn" onclick="closeModal()">&times;</span>
+            <div id="modalImage" class="modal-image"></div> 
+            <h3 id="modalTitle" class="modal-title"></h3>
+            <p id="modalPrice" class="modal-price"></p>
+            
+            <div class="quantity-control">
+                <button class="qty-btn" onclick="adjustQuantity(-1)">-</button>
+                <input type="number" id="modalQuantity" value="1" min="1" readonly>
+                <button class="qty-btn" onclick="adjustQuantity(1)">+</button>
+            </div>
+            
+            <button id="modalAddToCartBtn">Add to Cart</button>
+        </div>
+    </div>
     
-    <h3>Spanish Latte</h3>
+    <footer>
+        <p>&copy; 2023 Brew Haven. All rights reserved.</p>
+    </footer>
 
-    <p>₱160</p>
-    <button onclick="addToCart('Spanish Latte',160)">Add to Cart</button>
-  </div>
-
-</div>
-
-
-<h2 class="section-title">Food and Desserts</h2> <div class="product-grid">
-
-  <div class="product">
-    <div class="prod-img food1"></div>
-    <h3>Spaghetti (Sweet Style)</h3>
-    <p>₱120</p>
-    <button onclick="addToCart('Spaghetti (Sweet Style)',120)">Add to Cart</button>
-  </div>
-
-  <div class="product">
-    <div class="prod-img food2"></div>
-    <h3>Creamy Carbonara</h3>
-    <p>₱135</p>
-    <button onclick="addToCart('Creamy Carbonara',135)">Add to Cart</button>
-  </div>
-
-  <div class="product">
-    <div class="prod-img food3"></div>
-    <h3>Brew Haven Burger</h3>
-    <p>₱180</p>
-    <button onclick="addToCart('Brew Haven Burger',180)">Add to Cart</button>
-  </div>
-
-  <div class="product">
-    <div class="prod-img food4"></div>
-    <h3>Classic Fries</h3>
-    <p>₱85</p>
-    <button onclick="addToCart('Classic Fries',85)">Add to Cart</button>
-  </div>
-  
-  <div class="product">
-    <div class="prod-img macaron1"></div>
-    <h3>Mango Macaron (3 pcs)</h3>
-    <p>₱60</p>
-    <button onclick="addToCart('Mango Macaron (3 pcs)',60)">Add to Cart</button>
-  </div>
-
-  <div class="product">
-    <div class="prod-img macaron2"></div>
-    <h3>Pandan Macaron (3 pcs)</h3>
-    <p>₱60</p>
-    <button onclick="addToCart('Pandan Macaron (3 pcs)',60)">Add to Cart</button>
-  </div>
-
-  <div class="product">
-    <div class="prod-img macaron3"></div>
-    <h3>Ube Macaron (3 pcs)</h3>
-    <p>₱60</p>
-    <button onclick="addToCart('Ube Macaron (3 pcs)',60)">Add to Cart</button>
-  </div>
-  
-  <div class="product">
-    <div class="prod-img macaron4"></div>
-    <h3>Macaron Mixed Flavor (5 pcs)</h3>
-    <p>₱100</p>
-    <button onclick="addToCart('Macaron Mixed Flavor (5 pcs)',100)">Add to Cart</button>
-  </div>
-
-  <div class="product">
-    <div class="prod-img cake1"></div>
-    <h3>Chocolate Dream Cake (Slice)</h3>
-    <p>₱95</p>
-    <button onclick="addToCart('Chocolate Dream Cake (Slice)',95)">Add to Cart</button>
-  </div>
-
-  <div class="product">
-    <div class="prod-img cake2"></div>
-    <h3>Red Velvet Cheesecake (Slice)</h3>
-    <p>₱110</p>
-    <button onclick="addToCart('Red Velvet Cheesecake (Slice)',110)">Add to Cart</button>
-  </div>
-
-  <div class="product">
-    <div class="prod-img cake3"></div>
-    <h3>Ube Langka Cake (Slice)</h3>
-    <p>₱100</p>
-    <button onclick="addToCart('Ube Langka Cake (Slice)',100)">Add to Cart</button>
-  </div>
-
-  <div id="toast-notification" class="toast-hidden">
-    Item added to cart!
-</div>
-  
-</div>
-
+    <script src="script.js"></script>
 </body>
 </html>

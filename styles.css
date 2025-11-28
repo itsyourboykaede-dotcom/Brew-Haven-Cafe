@@ -468,3 +468,311 @@ h1, h2, h3, .section-title {
 .product h3 {
     font-family: 'Prata', serif;
 }
+
+/* -------------------------------------------------------------------------- */
+/* --- PRODUCT MODAL (POP-UP) STYLES --- */
+/* -------------------------------------------------------------------------- */
+
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 2000; /* Sit on top of everything */
+    left: 0;
+    top: 0;
+    width: 100%; 
+    height: 100%;
+    overflow: auto; 
+    background-color: rgba(0,0,0,0.6); /* Black w/ opacity (the dark overlay) */
+    
+    /* Center the content */
+    align-items: center;
+    justify-content: center;
+}
+
+.modal-content {
+    background-color: #fefefe;
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+    width: 90%; /* Responsive width */
+    max-width: 450px; /* Maximum size */
+    text-align: center;
+    position: relative;
+    animation: fadeIn 0.3s;
+}
+
+@keyframes fadeIn {
+    from {opacity: 0; transform: scale(0.9);}
+    to {opacity: 1; transform: scale(1);}
+}
+
+.close-btn {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    cursor: pointer;
+    transition: color 0.2s;
+}
+
+.close-btn:hover,
+.close-btn:focus {
+    color: #333;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.modal-image {
+    width: 100%;
+    height: 200px;
+    background-color: #eee;
+    background-size: cover;
+    background-position: center;
+    border-radius: 10px;
+    margin-bottom: 20px;
+}
+
+.modal-title {
+    font-size: 24px;
+    color: #1e3932;
+    margin-bottom: 5px;
+    font-family: 'Prata', serif;
+}
+
+.modal-price {
+    font-size: 20px;
+    color: #b5883d;
+    margin-bottom: 20px;
+    font-weight: bold;
+}
+
+/* Quantity Control Styles */
+.quantity-control {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 20px 0;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    overflow: hidden;
+    width: 150px; 
+    margin: 20px auto;
+}
+
+.qty-btn {
+    background-color: #f0f0f0;
+    border: none;
+    padding: 10px 15px;
+    cursor: pointer;
+    font-size: 18px;
+    color: #1e3932;
+    transition: background-color 0.2s;
+    user-select: none;
+}
+
+.qty-btn:hover {
+    background-color: #e0e0e0;
+}
+/* Input Field Styling */
+#modalQuantity {
+    width: 40px;
+    text-align: center;
+    border: none;
+    outline: none;
+    font-size: 16px;
+    font-weight: bold;
+    /* REMOVED: -moz-appearance: textfield; */
+}
+
+/* Chrome, Safari, Edge Fix: Hide spin buttons */
+#modalQuantity::-webkit-inner-spin-button, 
+#modalQuantity::-webkit-outer-spin-button {
+    -webkit-appearance: none; 
+    margin: 0;
+}
+
+/* This block is essential and should be placed immediately after the main style block */
+#modalQuantity::-webkit-inner-spin-button, 
+#modalQuantity::-webkit-outer-spin-button {
+    -webkit-appearance: none; /* Hides arrows in Chrome, Safari, Edge */
+    margin: 0;
+}
+
+/* Modal Add to Cart Button */
+#modalAddToCartBtn {
+    width: 100%;
+    padding: 15px;
+    font-size: 18px;
+    margin-top: 10px;
+    background-color: #1e3932; /* Match your main button style */
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    font-weight: 600;
+}
+
+#modalAddToCartBtn:hover {
+    background-color: #145233;
+}
+
+.modal-image {
+    width: 100%;
+    /* 🔴 CRITICAL FIX: The div needs a height to display the background image */
+    height: 200px; /* Adjust this value (e.g., 200px) to your desired image size */
+    
+    background-color: #eee;
+    background-size: cover;
+    background-position: center;
+    border-radius: 10px;
+    margin-bottom: 20px;
+}
+
+/* -------------------------------------------------------------------------- */
+/* --- PRODUCT MODAL (POP-UP) STYLES (NEW) --- */
+/* -------------------------------------------------------------------------- */
+
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 2000; /* Sit on top of everything */
+    left: 0;
+    top: 0;
+    width: 100%; 
+    height: 100%;
+    overflow: auto; 
+    background-color: rgba(0,0,0,0.6); /* Black w/ opacity (the dark overlay) */
+    
+    /* Center the content */
+    align-items: center;
+    justify-content: center;
+}
+
+.modal-content {
+    background-color: #fefefe;
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+    width: 90%; /* Responsive width */
+    max-width: 450px; /* Maximum size */
+    text-align: center;
+    position: relative;
+    animation: fadeIn 0.3s;
+}
+
+@keyframes fadeIn {
+    from {opacity: 0; transform: scale(0.9);}
+    to {opacity: 1; transform: scale(1);}
+}
+
+.close-btn {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    cursor: pointer;
+    transition: color 0.2s;
+}
+
+.close-btn:hover,
+.close-btn:focus {
+    color: #333;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+/* 🟢 CRITICAL FIX: Give the image container (a div) an explicit height */
+.modal-image {
+    width: 100%;
+    height: 200px; /* This sets the visible space for the image to display */
+    background-color: #eee;
+    background-size: cover;
+    background-position: center;
+    border-radius: 10px;
+    margin-bottom: 20px;
+}
+
+.modal-title {
+    font-size: 24px;
+    color: #1e3932;
+    margin-bottom: 5px;
+    font-family: 'Prata', serif;
+}
+
+.modal-price {
+    font-size: 20px;
+    color: #b5883d;
+    margin-bottom: 20px;
+    font-weight: bold;
+}
+
+/* Quantity Control Styles */
+.quantity-control {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 20px auto;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    overflow: hidden;
+    width: 150px; 
+}
+
+.qty-btn {
+    background-color: #f0f0f0;
+    border: none;
+    padding: 10px 15px;
+    cursor: pointer;
+    font-size: 18px;
+    color: #1e3932;
+    transition: background-color 0.2s;
+    user-select: none;
+}
+
+.qty-btn:hover {
+    background-color: #e0e0e0;
+}
+
+/* Input Field Styling */
+#modalQuantity {
+    width: 40px;
+    text-align: center;
+    border: none;
+    outline: none;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+/* Chrome, Safari, Edge Fix: Hide spin buttons */
+#modalQuantity::-webkit-inner-spin-button, 
+#modalQuantity::-webkit-outer-spin-button {
+    -webkit-appearance: none; 
+    margin: 0;
+}
+
+
+/* Modal Add to Cart Button */
+#modalAddToCartBtn {
+    width: 100%;
+    padding: 15px;
+    font-size: 18px;
+    margin-top: 10px;
+    background-color: #1e3932; /* Match your main button style */
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    font-weight: 600;
+}
+
+#modalAddToCartBtn:hover {
+    background-color: #145233;
+}
