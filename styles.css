@@ -84,55 +84,41 @@ nav a:hover {
 }
 
 
-/* --- FEATURED DRINKS SECTION (index.html) --- */
-.featured {
+/* --- MISSION & VISION SECTION (index.html) --- */
+.mission-vision {
+    /* Background Image: Now using the specified filename: missionvision.jpg */
+    background: url('missionvision.jpg') center/cover no-repeat; 
+    background-attachment: fixed; /* Makes the background static when scrolling */
     padding: 60px 50px;
     text-align: center;
-    background-color: #fff;
+    color: #333; 
+    display: flex; /* Arranges Mission and Vision side-by-side */
+    justify-content: space-around;
+    gap: 40px;
+    background-color: #e6f0e6; /* Fallback light green color */
 }
 
-.featured h3 {
+/* CORRECTED: Targeting H2 tags */
+.mission-vision h2 { 
     font-size: 32px;
-    margin-bottom: 40px;
-    color: #1e3932;
+    margin-bottom: 20px; 
+    color: #1e3932; 
 }
 
-.drinks-container {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 30px;
+.mission-vision p {
+    font-size: 18px;
+    line-height: 1.6;
+    max-width: 400px;
+    margin: 0 auto;
 }
 
-.drink-card {
-    background-color: #f9f9f9;
-    border-radius: 10px;
-    overflow: hidden;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-    transition: transform 0.3s;
-}
-
-.drink-card:hover {
-    transform: translateY(-5px);
-}
-
-.drink-card img {
-    width: 50%;
-    height: 200px;
-    object-fit: cover;
-}
-
-.drink-card .content {
+/* White box with transparency to make text readable on top of background image */
+.mv-content {
+    flex: 1; /* Equal width for Mission and Vision boxes */
     padding: 20px;
-}
-
-.drink-card .content h4 {
-    margin-bottom: 10px;
-    color: #1e3932;
-}
-
-.drink-card .content p {
-    margin-bottom: 15px;
-    font-size: 16px;
+    background-color: rgba(255, 255, 255, 0.85); /* 85% opaque white for readability */
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
 }
 
 /* --- PRODUCT PAGE STYLES (products.html) --- */
@@ -142,7 +128,7 @@ nav a:hover {
     color: #1e3932;
     border-bottom: 3px solid #d8e6d2; 
     width: fit-content;
-    margin: 30px auto; 
+    margin: 30px auto 15px;
     padding-bottom: 5px;
 }
 
@@ -175,14 +161,13 @@ nav a:hover {
     border-radius:10px;
     background-size:cover;
     background-position:center;
+    margin-bottom: 10px;
 }
-
-/* --- MENU PAGE SPACING FIX (Price and Button Separation) --- */
 
 /* Targets the price text (<p>) to push the button down */
 .product p {
-    margin-bottom: 15px; /* Creates vertical space between price and button */
-    margin-top: 10px; /* Creates space between product name and price */
+    margin-bottom: 15px;
+    margin-top: 10px;
     font-size: 18px;
     font-weight: bold;
     color: #333;
@@ -207,6 +192,7 @@ nav a:hover {
 }
 
 /* --- PRODUCT IMAGE CLASSES --- */
+/* Beverages */
 .coffee1 { background-image:url('caramel\ latte.jpg'); }
 .coffee2 { background-image:url('vanilla\ cold\ brew.jpg'); }
 .coffee3 { background-image:url('matcha\ frappe.jpg'); }
@@ -218,12 +204,22 @@ nav a:hover {
 .coffee9 { background-image:url('Cream\ Frappucino.jpg'); }
 .coffee10 { background-image:url('spanish\ latte.jpg'); }
 
+/* Foods */
+.food1 { background-image:url('spaghetti.jpg'); background-size: contain; background-repeat: no-repeat; } 
+.food2 { background-image:url('carbonara.jpg'); background-size: contain; background-repeat: no-repeat; }
+.food3 { background-image:url('burger.jpg'); }
+.food4 { background-image:url('fries.jpg'); }
 
-#cart-list p {
-margin-bottom: 8px; 
-font-size: 16px; 
+/* Cakes */
+.cake1 { background-image:url('chocolate.jpg'); } 
+.cake2 { background-image:url('RedVelvet.jpg'); } 
+.cake3 { background-image:url('Ubecake.jpg'); } 
 
-}
+/* UPDATED: Macarons */
+.macaron1 { background-image:url('mango.jpg'); background-size: contain; background-repeat: no-repeat; } 
+.macaron2 { background-image:url('pandan.jpg'); background-size: contain; background-repeat: no-repeat; } 
+.macaron3 { background-image:url('ube.jpg'); background-size: contain; background-repeat: no-repeat; } 
+.macaron4 { background-image:url('mixed.jpg'); background-size: cover; } 
 
 /* --- CHECKOUT/FORM STYLES --- */
 .checkout-card {
@@ -311,32 +307,32 @@ footer {
     
     /* 1. Make the Header a column container */
     header {
-        flex-wrap: wrap; /* Allow wrapping */
-        padding: 15px 20px; /* Adjust padding for mobile */
+        flex-wrap: wrap;
+        padding: 15px 20px;
     }
 
     /* 2. Show the Hamburger Icon */
     .hamburger-menu {
-        display: block; /* Show the icon */
-        order: 2; /* Place the icon on the far right */
-        margin-left: auto; /* Push it to the right */
+        display: block;
+        order: 2;
+        margin-left: auto;
     }
 
     /* 3. Collapse/Hide the Navigation Links by default */
     .nav-links {
-        display: none; /* Hidden by default */
-        flex-direction: column; /* Stack links vertically */
-        width: 100%; /* Make it take full width */
+        display: none; 
+        flex-direction: column;
+        width: 100%;
         text-align: center;
-        order: 3; /* Place it below the logo and icon */
+        order: 3;
         margin-top: 10px;
-        background-color: #145233; /* Slightly lighter background for the menu */
+        background-color: #145233;
         padding: 10px 0;
     }
 
     /* 4. Style the links inside the collapsed menu */
     .nav-links a {
-        margin: 10px 0; /* Add vertical padding */
+        margin: 10px 0;
         padding: 8px 0;
         border-bottom: 1px solid rgba(255, 255, 255, 0.1);
     }
@@ -346,11 +342,49 @@ footer {
     
     /* State for when the menu is open (Toggled by JavaScript) */
     .nav-links.open {
-        display: flex; /* Show the menu when the 'open' class is added */
+        display: flex;
     }
 
     /* Ensure logo stays on the left */
     .logo {
         order: 1; 
+    }
+    
+    /* For Mission/Vision Section in Mobile */
+    .mission-vision {
+        flex-direction: column;
+        gap: 20px;
+        padding: 30px 20px;
+    }
+}
+
+@media (max-width: 768px) {
+    /* ... existing rules ... */
+    
+    /* 5. Adjust main section padding */
+    .mission-vision {
+        padding: 30px 20px; /* Reduced side padding for phone */
+    }
+
+    /* 6. Adjust header padding (Already done but verify) */
+    header {
+        padding: 10px 20px; /* Adjusting header padding for mobile */
+    }
+}
+
+/* --- Media Query for Extra Small Screens (e.g., most phones) --- */
+@media (max-width: 500px) {
+    /* Reduce large Hero text */
+    .hero h2 {
+        font-size: 36px; /* Reduced from 48px */
+    }
+
+    .hero p {
+        font-size: 18px; /* Reduced from 20px */
+    }
+
+    /* Reduce padding on the main header for extra narrow phones */
+    header {
+        padding: 10px 15px; 
     }
 }
