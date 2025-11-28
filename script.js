@@ -14,7 +14,8 @@ function addToCart(name, price){
   }
   
   localStorage.setItem("cart",JSON.stringify(cart));
-  alert(name + " added to cart! Total quantity: " + (existingItem ? existingItem.quantity : 1));
+  
+  // The alert() function has been removed from here.
 }
 
 // NOTE: loadCart and clearCart logic is now implemented in cart.html 
