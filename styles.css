@@ -388,3 +388,41 @@ footer {
         width: 95%; 
     }
 }
+
+/* -------------------------------------------------------------------------- */
+/* --- TOAST NOTIFICATION STYLES (NEW) --- */
+/* -------------------------------------------------------------------------- */
+
+#toast-notification {
+    visibility: hidden; /* Hidden by default */
+    min-width: 250px;
+    margin-left: -125px; /* Center the snackbar */
+    background-color: #1e3932; /* Dark Green */
+    color: #fff;
+    text-align: center;
+    border-radius: 5px;
+    padding: 16px;
+    position: fixed;
+    z-index: 10000;
+    left: 50%;
+    bottom: 30px; /* Position at the bottom */
+    font-size: 17px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    opacity: 0;
+    transition: opacity 0.5s, visibility 0s 0.5s;
+}
+
+#toast-notification.toast-visible {
+    visibility: visible;
+    opacity: 1;
+    transition: opacity 0.5s;
+}
+
+/* Responsive adjustment for small screens */
+@media (max-width: 600px) {
+    #toast-notification {
+        min-width: 90%;
+        margin-left: -45%;
+        left: 50%;
+    }
+}
