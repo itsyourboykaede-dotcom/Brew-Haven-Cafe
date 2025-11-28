@@ -350,7 +350,7 @@ footer {
         order: 1; 
     }
     
-    /* For Mission/Vision Section in Mobile */
+    /* For Mission/Vision Section in Mobile (stacks vertically) */
     .mission-vision {
         flex-direction: column;
         gap: 20px;
