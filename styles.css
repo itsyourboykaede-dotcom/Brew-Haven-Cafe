@@ -3,9 +3,9 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: 'Arial', sans-serif;
+    /* CHANGE: Apply Montserrat font globally for readability */
+    font-family: 'Montserrat', sans-serif; 
 }
-
 body {
     background-color: #f5f5f5;
     color: #333;
@@ -425,4 +425,46 @@ footer {
         margin-left: -45%;
         left: 50%;
     }
+}
+
+/* --- ELEGANT SERIF FONT FOR HEADINGS AND LOGO --- */
+
+/* Apply to all major headings and the section titles */
+h1, h2, h3, .section-title {
+    font-family: 'Prata', serif;
+}
+
+/* Apply to the logo text */
+.logo-text {
+    font-family: 'Prata', serif;
+    /* Ensuring the logo text is always prominent */
+    font-weight: 400; 
+}
+/* If you are still using the old text logo: */
+.logo {
+    font-family: 'Prata', serif;
+}
+
+
+/* --- UPDATE EXISTING STYLES --- */
+
+/* 1. Update Hero Text (h2) for the new font style */
+.hero h2 {
+    font-size: 52px; /* Slightly larger for impact */
+    margin-bottom: 15px;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+    font-family: 'Prata', serif; /* Apply Prata specifically */
+}
+
+/* 2. Update Mission/Vision Headings (h2) for the new font style */
+.mission-vision h2 { 
+    font-size: 32px;
+    margin-bottom: 20px; 
+    color: #1e3932; 
+    font-family: 'Prata', serif; /* Apply Prata specifically */
+}
+
+/* 3. Update Product Titles (h3) for the new font style */
+.product h3 {
+    font-family: 'Prata', serif;
 }

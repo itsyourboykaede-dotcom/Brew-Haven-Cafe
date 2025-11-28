@@ -5,15 +5,23 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Checkout</title>
 
-<link rel="stylesheet" href="styles.css"> 
+<link rel="stylesheet" href="styles.css">
+<link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
 <style>
 /* --- GENERAL CARD & LAYOUT STYLES --- */
 body {
     font-family: Arial, sans-serif;
-    background-color: #f4f4f4;
+    /* REMOVED: background-color: #f4f4f4; */
     color: #333;
     margin: 0;
     padding: 0;
+
+    /* --- NEW BACKGROUND STYLES --- */
+    background-image: url('checkout.jpg'); /* **CHANGE THIS FILENAME** */
+    background-size: cover; /* Ensures the image covers the entire screen */
+    background-attachment: fixed; /* Keeps the background static when scrolling */
+    background-position: center center; /* Centers the image */
+    /* --- END NEW BACKGROUND STYLES --- */
 }
 
 header {
