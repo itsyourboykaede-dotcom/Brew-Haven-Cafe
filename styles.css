@@ -28,6 +28,8 @@ header {
     font-size: 28px;
     font-weight: bold;
     color: #fff; /* White Text */
+    /* 🔴 FIX: Applied Prata font here too for consistency */
+    font-family: 'Prata', serif;
 }
 
 nav a {
@@ -366,11 +368,16 @@ footer {
         padding: 15px 20px;
     }
 
+    /* 🔴 FIX: Ensure logo stays on the left (fixes the shift when menu opens) */
+    .logo {
+        order: 1; 
+        margin-right: auto;
+    }
+
     /* 2. Show the Hamburger Icon */
     .hamburger-menu {
         display: block;
         order: 2;
-        margin-left: auto;
     }
 
     /* 3. Collapse/Hide the Navigation Links by default */
@@ -398,11 +405,6 @@ footer {
     /* State for when the menu is open (Toggled by JavaScript) */
     .nav-links.open {
         display: flex;
-    }
-
-    /* Ensure logo stays on the left */
-    .logo {
-        order: 1; 
     }
     
     /* For Mission/Vision Section in Mobile (stacks vertically) */
@@ -440,6 +442,23 @@ footer {
     .delivery-form,
     .checkout-buttons {
         width: 95%; 
+    }
+    
+    /* 🔴 FIX: Search Box Styling (More prominent) */
+    .search-container {
+        width: 90%; 
+        padding: 10px 0; 
+    }
+
+    #productSearch {
+        padding: 15px 20px 15px 50px; 
+        font-size: 18px; 
+        border: 2px solid #1e3932; /* Thicker border */
+    }
+
+    .search-icon {
+        left: 25px; /* Adjust icon position */
+        font-size: 20px;
     }
 }
 
