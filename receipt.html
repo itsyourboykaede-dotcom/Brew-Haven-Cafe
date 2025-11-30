@@ -196,6 +196,13 @@
             margin: 20px 10px; /* Smaller side margin for full width on mobile */
             padding: 20px;
         }
+
+        /* 🟢 FIX: Force buttons to stack and add vertical separation on mobile */
+        .btn-box button {
+            display: block; /* Make them take up the full width and stack */
+            width: 90%; /* Use 90% width to match the screenshot look */
+            margin: 10px auto; /* Add vertical margin (10px top/bottom) for separation */
+        }
     }
 
 </style>
