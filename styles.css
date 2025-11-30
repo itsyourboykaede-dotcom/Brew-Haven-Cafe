@@ -56,9 +56,10 @@ nav a:hover {
 }
 
 .hero h2 {
-    font-size: 48px;
+    font-size: 52px; /* Slightly larger for impact */
     margin-bottom: 15px;
     text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+    font-family: 'Prata', serif; /* Apply Prata specifically */
 }
 
 .hero p {
@@ -103,6 +104,7 @@ nav a:hover {
     font-size: 32px;
     margin-bottom: 20px; 
     color: #1e3932; 
+    font-family: 'Prata', serif; /* Apply Prata specifically */
 }
 
 .mission-vision p {
@@ -130,18 +132,30 @@ nav a:hover {
     width: fit-content;
     margin: 30px auto 15px;
     padding-bottom: 5px;
+    font-family: 'Prata', serif;
 }
 
+/* CRITICAL FIX: Use auto-fill to prevent stretching when items are hidden */
 .product-grid {
     display:grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    gap:20px;
+    /* Keeps column tracks even when products are hidden */
+    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); 
+    gap:15px;
     padding:20px;
 }
 
+/* *** FIXED & ADJUSTED: The main product card rule *** */
 .product {
+    /* FIX: Added for stable internal structure and anti-stretching */
+    display: flex; 
+    flex-direction: column;
+    height: 100%; 
+    /* FIX: Added to prevent image rendering glitches on search (keeps images visible) */
+    position: relative; 
+    
     background: #fff;
-    padding: 20px;
+    /* ADJUSTED: Reduced padding for smaller card size */
+    padding: 15px; 
     border-radius: 10px;
     box-shadow: 0 2px 5px rgba(0,0,0,0.1);
     text-align: center;
@@ -154,19 +168,27 @@ nav a:hover {
     transform: translateY(-2px);
 }
 
+/* *** FIXED & ADJUSTED: The image container rule *** */
 .prod-img {
     width:100%;
-    height:150px;
+    /* ADJUSTED: Reduced height for a smaller card size */
+    height:140px; 
     background:#c9c9c9;
     border-radius:10px;
     background-size:cover;
     background-position:center;
     margin-bottom: 10px;
+    /* FIX: Prevents the image container from shrinking */
+    flex-shrink: 0; 
+}
+
+.product h3 {
+    font-family: 'Prata', serif;
 }
 
 /* Targets the price text (<p>) to push the button down */
 .product p {
-    margin-bottom: 15px;
+    margin-bottom: 5px; /* Reduced margin to make space for stars */
     margin-top: 10px;
     font-size: 18px;
     font-weight: bold;
@@ -184,6 +206,7 @@ nav a:hover {
     font-size: 14px;
     font-weight: 500;
     transition: all 0.2s;
+    margin-top: 10px; /* Added margin to push button down from rating */
 }
 
 .product button:hover {
@@ -192,7 +215,8 @@ nav a:hover {
 }
 
 /* --- PRODUCT IMAGE CLASSES --- */
-/* Beverages */
+
+/* Beverages (Original) */
 .coffee1 { background-image:url('caramel\ latte.jpg'); }
 .coffee2 { background-image:url('vanilla\ cold\ brew.jpg'); }
 .coffee3 { background-image:url('matcha\ frappe.jpg'); }
@@ -200,26 +224,57 @@ nav a:hover {
 .coffee5 { background-image:url('hazelnut\ latte.jpg'); }
 .coffee6 { background-image:url('classic\ americano.jpg'); }
 .coffee7 { background-image:url('dark\ chocolate\ frappe.jpg'); }
-.coffee8 { background-image:url('strawberry\ milk\ brew.jpg'); }
-.coffee9 { background-image:url('Cream\ Frappucino.jpg'); }
-.coffee10 { background-image:url('spanish\ latte.jpg'); }
 
-/* Foods */
+/* Beverages (Newly Added) */
+.coffee8 { background-image: url('Peach\ Ice\ Tea.jpg'); } 
+.coffee9 { background-image: url('Hot\ Cocoa.jpg'); } 
+.coffee10 { background-image: url('sparkling\ lemonade.jpg'); } 
+
+/* Foods (Original) */
 .food1 { background-image:url('spaghetti.jpg'); background-size: contain; background-repeat: no-repeat; } 
 .food2 { background-image:url('carbonara.jpg'); background-size: contain; background-repeat: no-repeat; }
 .food3 { background-image:url('burger.jpg'); }
 .food4 { background-image:url('fries.jpg'); }
+
+/* Foods (Newly Added) */
+.food8 { 
+    /* Grilled Cheese Sandwich */
+    background-image: url('Grilled\ Cheese.jpg'); 
+}
+.food9 { 
+    /* Caesar Salad */
+    background-image: url('Caesar\ Salad.jpg'); 
+}
+.food10 { 
+    /* Tiramisu */
+    background-image: url('Tiramisu.jpg'); 
+}
 
 /* Cakes */
 .cake1 { background-image:url('chocolate.jpg'); } 
 .cake2 { background-image:url('RedVelvet.jpg'); } 
 .cake3 { background-image:url('Ubecake.jpg'); } 
 
-/* UPDATED: Macarons */
+/* Macarons */
 .macaron1 { background-image:url('mango.jpg'); background-size: contain; background-repeat: no-repeat; } 
 .macaron2 { background-image:url('pandan.jpg'); background-size: contain; background-repeat: no-repeat; } 
 .macaron3 { background-image:url('ube.jpg'); background-size: contain; background-repeat: no-repeat; } 
 .macaron4 { background-image:url('mixed.jpg'); background-size: cover; } 
+
+/* -------------------------------------------------------------------------- */
+/* --- NEW BEST SELLER IMAGE BACKGROUNDS (Previously Added) --- */
+/* -------------------------------------------------------------------------- */
+
+/* Best Seller Drinks (From User Images) */
+.best-seller-drink1 { background-image: url('dark\ chocolate\ frappe.jpg'); } 
+.best-seller-drink2 { background-image: url('vanilla\ cold\ brew.jpg'); } 
+.best-seller-drink3 { background-image: url('hazelnut\ latte.jpg'); } 
+
+/* Best Seller Foods/Desserts (From User Images) */
+.best-seller-food1 { background-image: url('fries.jpg'); } 
+.best-seller-food2 { background-image: url('burger.jpg'); } 
+.best-seller-food3 { background-image: url('Grilled\ Cheese.jpg'); } 
+
 
 /* --- CHECKOUT/FORM STYLES --- */
 .checkout-card {
@@ -229,7 +284,7 @@ nav a:hover {
     max-width: 700px;
     margin: 20px auto;
     border-radius: 10px;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
 }
 
 .total-row {
@@ -357,7 +412,6 @@ footer {
         padding: 30px 20px;
     }
 }
-/* The missing closing bracket was here! */
 
 /* --- New: Media Query for Extra Small Screens (e.g., most phones) --- */
 @media (max-width: 500px) {
@@ -446,333 +500,119 @@ h1, h2, h3, .section-title {
 }
 
 
-/* --- UPDATE EXISTING STYLES --- */
-
-/* 1. Update Hero Text (h2) for the new font style */
-.hero h2 {
-    font-size: 52px; /* Slightly larger for impact */
-    margin-bottom: 15px;
-    text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
-    font-family: 'Prata', serif; /* Apply Prata specifically */
-}
-
-/* 2. Update Mission/Vision Headings (h2) for the new font style */
-.mission-vision h2 { 
-    font-size: 32px;
-    margin-bottom: 20px; 
-    color: #1e3932; 
-    font-family: 'Prata', serif; /* Apply Prata specifically */
-}
-
-/* 3. Update Product Titles (h3) for the new font style */
-.product h3 {
-    font-family: 'Prata', serif;
-}
-
 /* -------------------------------------------------------------------------- */
-/* --- PRODUCT MODAL (POP-UP) STYLES --- */
+/* --- RATING STAR STYLES (Previously Added) --- */
 /* -------------------------------------------------------------------------- */
 
+/* Container for all stars */
+.rating-stars {
+    margin: 5px 0 10px; /* Space above and below the rating */
+    font-size: 18px; /* Size of the star character */
+    letter-spacing: 2px; /* Space between the stars */
+}
+
+/* Base style for all stars (Default to a lighter gray for "empty" status) */
+.rating-stars .star {
+    color: #ccc; 
+    display: inline-block; 
+}
+
+/* 5-Star Rating (Gold for best sellers) */
+.rating-5 .star {
+    color: gold; 
+}
+
+/* 4-Star Rating (Orange for 4 filled stars) */
+.rating-4 .star:nth-child(-n+4) {
+    color: orange;
+}
+
+/* 3-Star Rating (Keeping the rule in case it's needed later, though not currently used) */
+.rating-3 .star:nth-child(-n+3) {
+    color: orange;
+}
+
+/* Add spacing for icons in the navigation */
+nav a i {
+    margin-right: 8px; /* Space between icon and text */
+}
+
+/* --- PRODUCT SEARCH STYLES --- */
+.search-container {
+    padding: 20px 0;
+    margin: 0 auto 30px;
+    max-width: 700px; 
+    text-align: center;
+}
+
+/* NEW: Wrapper for the input and icon to enable positioning */
+.search-wrapper {
+    position: relative;
+    display: inline-block; 
+    width: 100%; 
+}
+
+/* NEW: Style for the search icon */
+.search-icon {
+    position: absolute;
+    top: 50%;
+    left: 20px; /* Position the icon inside the left padding */
+    transform: translateY(-50%);
+    color: #1e3932; /* Dark green icon */
+    font-size: 18px;
+    pointer-events: none; /* Allows clicks to go through to the input */
+    z-index: 2; /* Ensures it's above the input */
+}
+
+
+#productSearch {
+    width: 100%;
+    /* ADJUSTED: Increased left padding (from 20px to 50px) to make space for the icon */
+    padding: 12px 20px 12px 50px; 
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 25px; /* Pill shape */
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+    outline: none;
+    transition: border-color 0.3s;
+    box-sizing: border-box; 
+}
+
+#productSearch:focus {
+    border-color: #1e3932; /* Highlights when focused */
+    box-shadow: 0 0 5px rgba(30, 57, 50, 0.5);
+}
+
+/* --- FIX FOR SEARCH FILTERING --- */
+
+/* 1. Define the class used by JavaScript to hide elements */
+.hidden {
+    display: none !important;
+}
+
+/* 2. Ensure the product grid is always displayed as a grid (not broken by the search) */
+.product-grid {
+    display: grid;
+}
+
+/* Core Modal Styles to hide it by default */
 .modal {
-    display: none; /* Hidden by default */
-    position: fixed; /* Stay in place */
-    z-index: 2000; /* Sit on top of everything */
+    display: none; /* Crucial: Hides the modal by default */
+    position: fixed; /* Stays in place */
+    z-index: 1000; /* Stays on top */
     left: 0;
     top: 0;
-    width: 100%; 
+    width: 100%;
     height: 100%;
-    overflow: auto; 
-    background-color: rgba(0,0,0,0.6); /* Black w/ opacity (the dark overlay) */
-    
-    /* Center the content */
-    align-items: center;
-    justify-content: center;
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
 }
 
-.modal-content {
-    background-color: #fefefe;
-    padding: 30px;
-    border-radius: 15px;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
-    width: 90%; /* Responsive width */
-    max-width: 450px; /* Maximum size */
-    text-align: center;
-    position: relative;
-    animation: fadeIn 0.3s;
-}
-
-@keyframes fadeIn {
-    from {opacity: 0; transform: scale(0.9);}
-    to {opacity: 1; transform: scale(1);}
-}
-
-.close-btn {
-    color: #aaa;
-    float: right;
-    font-size: 28px;
-    font-weight: bold;
-    position: absolute;
-    top: 10px;
-    right: 15px;
-    cursor: pointer;
-    transition: color 0.2s;
-}
-
-.close-btn:hover,
-.close-btn:focus {
-    color: #333;
-    text-decoration: none;
-    cursor: pointer;
-}
-
-.modal-image {
-    width: 100%;
-    height: 200px;
-    background-color: #eee;
-    background-size: cover;
-    background-position: center;
-    border-radius: 10px;
-    margin-bottom: 20px;
-}
-
-.modal-title {
-    font-size: 24px;
-    color: #1e3932;
-    margin-bottom: 5px;
-    font-family: 'Prata', serif;
-}
-
-.modal-price {
-    font-size: 20px;
-    color: #b5883d;
-    margin-bottom: 20px;
-    font-weight: bold;
-}
-
-/* Quantity Control Styles */
-.quantity-control {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin: 20px 0;
-    border: 1px solid #ddd;
-    border-radius: 8px;
-    overflow: hidden;
-    width: 150px; 
-    margin: 20px auto;
-}
-
-.qty-btn {
-    background-color: #f0f0f0;
-    border: none;
-    padding: 10px 15px;
-    cursor: pointer;
-    font-size: 18px;
-    color: #1e3932;
-    transition: background-color 0.2s;
-    user-select: none;
-}
-
-.qty-btn:hover {
-    background-color: #e0e0e0;
-}
-/* Input Field Styling */
-#modalQuantity {
-    width: 40px;
-    text-align: center;
-    border: none;
-    outline: none;
-    font-size: 16px;
-    font-weight: bold;
-    /* REMOVED: -moz-appearance: textfield; */
-}
-
-/* Chrome, Safari, Edge Fix: Hide spin buttons */
-#modalQuantity::-webkit-inner-spin-button, 
-#modalQuantity::-webkit-outer-spin-button {
-    -webkit-appearance: none; 
-    margin: 0;
-}
-
-/* This block is essential and should be placed immediately after the main style block */
-#modalQuantity::-webkit-inner-spin-button, 
-#modalQuantity::-webkit-outer-spin-button {
-    -webkit-appearance: none; /* Hides arrows in Chrome, Safari, Edge */
-    margin: 0;
-}
-
-/* Modal Add to Cart Button */
-#modalAddToCartBtn {
-    width: 100%;
-    padding: 15px;
-    font-size: 18px;
-    margin-top: 10px;
-    background-color: #1e3932; /* Match your main button style */
-    color: white;
-    border: none;
-    border-radius: 8px;
-    cursor: pointer;
-    transition: background-color 0.3s;
-    font-weight: 600;
-}
-
-#modalAddToCartBtn:hover {
-    background-color: #145233;
-}
-
-.modal-image {
-    width: 100%;
-    /* 🔴 CRITICAL FIX: The div needs a height to display the background image */
-    height: 200px; /* Adjust this value (e.g., 200px) to your desired image size */
-    
-    background-color: #eee;
-    background-size: cover;
-    background-position: center;
-    border-radius: 10px;
-    margin-bottom: 20px;
-}
-
-/* -------------------------------------------------------------------------- */
-/* --- PRODUCT MODAL (POP-UP) STYLES (NEW) --- */
-/* -------------------------------------------------------------------------- */
-
-.modal {
-    display: none; /* Hidden by default */
-    position: fixed; /* Stay in place */
-    z-index: 2000; /* Sit on top of everything */
-    left: 0;
-    top: 0;
-    width: 100%; 
-    height: 100%;
-    overflow: auto; 
-    background-color: rgba(0,0,0,0.6); /* Black w/ opacity (the dark overlay) */
-    
-    /* Center the content */
-    align-items: center;
-    justify-content: center;
-}
-
-.modal-content {
-    background-color: #fefefe;
-    padding: 30px;
-    border-radius: 15px;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
-    width: 90%; /* Responsive width */
-    max-width: 450px; /* Maximum size */
-    text-align: center;
-    position: relative;
-    animation: fadeIn 0.3s;
-}
-
-@keyframes fadeIn {
-    from {opacity: 0; transform: scale(0.9);}
-    to {opacity: 1; transform: scale(1);}
-}
-
-.close-btn {
-    color: #aaa;
-    float: right;
-    font-size: 28px;
-    font-weight: bold;
-    position: absolute;
-    top: 10px;
-    right: 15px;
-    cursor: pointer;
-    transition: color 0.2s;
-}
-
-.close-btn:hover,
-.close-btn:focus {
-    color: #333;
-    text-decoration: none;
-    cursor: pointer;
-}
-
-/* 🟢 CRITICAL FIX: Give the image container (a div) an explicit height */
-.modal-image {
-    width: 100%;
-    height: 200px; /* This sets the visible space for the image to display */
-    background-color: #eee;
-    background-size: cover;
-    background-position: center;
-    border-radius: 10px;
-    margin-bottom: 20px;
-}
-
-.modal-title {
-    font-size: 24px;
-    color: #1e3932;
-    margin-bottom: 5px;
-    font-family: 'Prata', serif;
-}
-
-.modal-price {
-    font-size: 20px;
-    color: #b5883d;
-    margin-bottom: 20px;
-    font-weight: bold;
-}
-
-/* Quantity Control Styles */
-.quantity-control {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin: 20px auto;
-    border: 1px solid #ddd;
-    border-radius: 8px;
-    overflow: hidden;
-    width: 150px; 
-}
-
-.qty-btn {
-    background-color: #f0f0f0;
-    border: none;
-    padding: 10px 15px;
-    cursor: pointer;
-    font-size: 18px;
-    color: #1e3932;
-    transition: background-color 0.2s;
-    user-select: none;
-}
-
-.qty-btn:hover {
-    background-color: #e0e0e0;
-}
-
-/* Input Field Styling */
-#modalQuantity {
-    width: 40px;
-    text-align: center;
-    border: none;
-    outline: none;
-    font-size: 16px;
-    font-weight: bold;
-}
-
-/* Chrome, Safari, Edge Fix: Hide spin buttons */
-#modalQuantity::-webkit-inner-spin-button, 
-#modalQuantity::-webkit-outer-spin-button {
-    -webkit-appearance: none; 
-    margin: 0;
-}
-
-
-/* Modal Add to Cart Button */
-#modalAddToCartBtn {
-    width: 100%;
-    padding: 15px;
-    font-size: 18px;
-    margin-top: 10px;
-    background-color: #1e3932; /* Match your main button style */
-    color: white;
-    border: none;
-    border-radius: 8px;
-    cursor: pointer;
-    transition: background-color 0.3s;
-    font-weight: 600;
-}
-
-#modalAddToCartBtn:hover {
-    background-color: #145233;
+/* 3. Explicitly define how many columns the grid should have to prevent stretching. 
+   On large screens, use auto-fill for better stability when items are hidden. */
+@media (min-width: 900px) {
+    .product-grid {
+        /* CRITICAL FIX: Forces the grid to maintain column tracks, preventing stretching */
+        grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); 
+    }
 }

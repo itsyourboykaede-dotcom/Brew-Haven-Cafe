@@ -22,12 +22,12 @@ function showToast(message) {
 }
 
 // --------------------------------------------------------
-// --- MODAL LOGIC (Restored functions) ---
+// --- MODAL LOGIC (The new functions you need) ---
 // --------------------------------------------------------
 
 // 1. Function to open the modal and populate data
 function openModal(name, price, imageUrl) {
-    // This sets the background image of the div element in the modal
+    // 🔴 FIX: This is the crucial line that sets the background image of the div
     document.getElementById('modalImage').style.backgroundImage = 'url(\'' + imageUrl + '\')'; 
 
     // Set the product details in the modal
@@ -73,9 +73,11 @@ function addToCartFromModal() {
     let message = ""; 
 
     if (existingItem) {
+        // If the item exists, ADD the new quantity to the existing quantity
         existingItem.quantity += quantity; 
         message = quantity + "x " + name + " added to cart! Total: " + existingItem.quantity;
     } else {
+        // Add new item with the selected quantity
         cart.push({ name, price, quantity }); 
         message = quantity + "x " + name + " added to cart!";
     }
@@ -122,3 +124,4 @@ document.addEventListener('DOMContentLoaded', () => {
         addToCartBtn.addEventListener('click', addToCartFromModal);
     }
 });
+
