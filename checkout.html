@@ -254,6 +254,36 @@ header {
     width: 100%;
     background-color: #fff;
 }
+
+/* --- NEW STYLES FOR CHECKOUT ITEM LIST --- */
+
+.checkout-item-detail {
+    display: flex;
+    justify-content: space-between;
+    padding: 8px 0;
+    font-size: 15px;
+    border-bottom: 1px dashed #eee;
+}
+
+.checkout-item-detail:last-of-type {
+    border-bottom: none;
+    padding-bottom: 15px; /* Add space before the total row */
+}
+
+.item-name {
+    font-weight: 500;
+}
+
+.item-qty {
+    color: #666;
+    font-size: 0.9em;
+}
+
+.item-subtotal {
+    font-weight: bold;
+    color: #1e3932;
+}
+
 </style>
 
 </head>
@@ -273,9 +303,10 @@ header {
 <h2 class="section-title">Order Summary</h2>
 
 <div class="card">
-    <div id="cart-summary">
-        <p>Items (Count: <span id="item-count">0</span>)</p>
-    </div>
+    <p style="font-weight: bold; margin-bottom: 10px;">Items in Cart (<span id="item-count">0</span>):</p>
+    
+    <div id="checkout-item-list">
+        </div>
 
     <div class="total-row">
         <span>Total Due:</span>
@@ -373,14 +404,34 @@ function loadCheckoutSummary() {
     const total = calculateTotal();
     const itemCount = calculateItemCount();
     
+    // NEW: Get the item list container
+    const itemListContainer = document.getElementById('checkout-item-list');
+    itemListContainer.innerHTML = ''; // Clear previous content
+
     document.getElementById("item-count").textContent = itemCount;
     document.getElementById("total").textContent = `₱${total.toFixed(2)}`; 
     
     // Redirect if cart is empty
     if (itemCount === 0) {
+        // ... (existing alert/redirect logic)
+        itemListContainer.innerHTML = '<p style="text-align:center; padding: 10px 0; color: #555;">No products in cart.</p>';
         alert("Your cart is empty. Please add items before proceeding.");
         window.location = "products.html";
+        return;
     }
+    
+    // NEW: Loop through cart and create list items
+    cart.forEach(item => {
+        const subtotal = item.price * item.quantity;
+
+        const itemDiv = document.createElement('div');
+        itemDiv.classList.add('checkout-item-detail'); // Uses the new CSS class
+        itemDiv.innerHTML = `
+            <span class="item-name">${item.name} <span class="item-qty">(${item.quantity}x)</span></span>
+            <span class="item-subtotal">₱${subtotal.toFixed(2)}</span>
+        `;
+        itemListContainer.appendChild(itemDiv);
+    });
 }
 
 function clearCart() {

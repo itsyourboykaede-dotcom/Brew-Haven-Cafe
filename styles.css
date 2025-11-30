@@ -869,3 +869,35 @@ nav a i {
 #modalAddToCartBtn:hover {
     background-color: #145233;
 }
+
+/* --- CHECKOUT ITEM LIST STYLES --- */
+
+.checkout-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 0;
+    border-bottom: 1px dashed #eee;
+    font-size: 16px;
+}
+
+.checkout-item:last-child {
+    border-bottom: none; /* No dashed line for the last item */
+    margin-bottom: 15px; /* Space before the total row */
+}
+
+.item-details {
+    display: flex;
+    gap: 8px;
+    font-weight: 500;
+}
+
+.item-qty {
+    color: #666; /* Subdued color for quantity */
+    font-weight: 400;
+}
+
+.item-price {
+    font-weight: bold;
+    color: #1e3932; /* Dark green for the price */
+}
