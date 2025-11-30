@@ -635,3 +635,135 @@ nav a i {
         grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); 
     }
 }
+
+/* --- MODAL STYLES (Product Details Pop-up) --- */
+
+/* Core Modal Styles (Already in your file, but important) */
+.modal {
+    display: none; /* Hides the modal by default */
+    position: fixed;
+    z-index: 10000; /* High z-index to be on top of everything */
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0,0,0,0.7); /* Darker background overlay */
+}
+
+.modal-content {
+    background-color: #fefefe;
+    margin: 5% auto; /* 5% from the top and centered */
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%; /* Could be 80% or a max-width, e.g., max-width: 450px */
+    max-width: 400px; /* Recommended for a single product view */
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+    text-align: center;
+}
+
+.close-btn {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: color 0.2s;
+}
+
+.close-btn:hover,
+.close-btn:focus {
+    color: #1e3932; /* Dark green on hover */
+    text-decoration: none;
+    cursor: pointer;
+}
+
+/* Product Image in Modal */
+.modal-image {
+    width: 100%;
+    height: 250px; /* Fixed height for image area */
+    background-size: cover; /* Fit the image */
+    background-position: center;
+    border-radius: 8px;
+    margin-bottom: 15px;
+    border: 1px solid #ddd;
+}
+
+.modal-title {
+    font-size: 28px;
+    color: #1e3932;
+    margin-bottom: 5px;
+}
+
+.modal-price {
+    font-size: 20px;
+    font-weight: bold;
+    color: #b5883d;
+    margin-bottom: 20px;
+}
+
+
+/* --- QUANTITY CONTROL STYLES --- */
+.quantity-control {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 0; /* Remove gap for a connected look */
+    margin-bottom: 20px;
+    width: 150px; /* Fixed width for the control block */
+    margin-left: auto;
+    margin-right: auto;
+    border: 1px solid #ccc; /* Border around the whole control */
+    border-radius: 5px;
+    overflow: hidden; /* Keeps borders nice and contained */
+}
+
+.qty-btn {
+    background-color: #f9f9f9;
+    color: #1e3932;
+    border: none; /* Remove individual button borders */
+    padding: 10px 15px;
+    cursor: pointer;
+    font-size: 18px;
+    line-height: 1; /* Aligns text vertically */
+    transition: background-color 0.2s;
+}
+
+.qty-btn:hover {
+    background-color: #d8e6d2;
+}
+
+#modalQuantity {
+    /* Style the number input */
+    width: 60px;
+    text-align: center;
+    border: none; /* Remove borders from the input */
+    font-size: 16px;
+    padding: 10px 0;
+    
+}
+
+/* Hide arrows in Chrome/Safari */
+#modalQuantity::-webkit-outer-spin-button,
+#modalQuantity::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+#modalAddToCartBtn {
+    /* Style the Add to Cart button in the modal */
+    padding: 15px 30px;
+    background-color: #1e3932;
+    color: #fff;
+    border: none;
+    border-radius: 30px;
+    font-size: 18px;
+    cursor: pointer;
+    width: 100%;
+    transition: background-color 0.3s;
+}
+
+#modalAddToCartBtn:hover {
+    background-color: #145233;
+}
