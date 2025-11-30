@@ -119,14 +119,14 @@
     border: 1px solid #FE2C55;
 }
 
-/* 🔴 FIX: Mobile Responsiveness for Cart Table (fixes overlap) */
+/* Mobile Responsiveness for Cart Table */
 @media (max-width: 600px) {
     .cart-table, .cart-table thead, .cart-table tbody, .cart-table th, .cart-table td, .cart-table tr {
-        display: block; /* Force table elements to be blocks */
+        display: block; 
     }
 
     .cart-table thead {
-        display: none; /* Hide the table headers on mobile */
+        display: none; 
     }
 
     .cart-table tr {
@@ -140,7 +140,7 @@
         border: none;
         border-bottom: 1px solid #eee;
         position: relative;
-        padding-left: 50%; /* Make space for the pseudo-label */
+        padding-left: 50%; 
         text-align: right;
     }
 
@@ -215,7 +215,8 @@
 <script src="script.js"></script>
 
 <script>
-let cart = JSON.parse(localStorage.getItem("cart")) || [];
+// FIX APPLIED: The line 'let cart = JSON.parse(localStorage.getItem("cart")) || [];' was removed.
+// The 'cart' variable is now correctly inherited from script.js, preventing it from being reset.
 
 function saveCart() {
     localStorage.setItem("cart", JSON.stringify(cart));
@@ -240,7 +241,9 @@ function loadCart() {
 
         const row = document.createElement("tr");
         row.innerHTML = `
-            <td data-label="Item">${item.name}</td>
+            <td data-label="Item">
+                <span>${item.name}</span>
+            </td>
             <td data-label="Price">₱${item.price.toFixed(2)}</td>
             <td data-label="Quantity">
                 <div class="quantity-control">
@@ -252,7 +255,7 @@ function loadCart() {
             <td data-label="Subtotal">₱${subtotal.toFixed(2)}</td>
             <td data-label="Remove">
                 <button class="remove-item-btn" onclick="removeItem(${index})">Remove</button>
-            </td>
+            </button>
         `;
         tbody.appendChild(row);
     });
